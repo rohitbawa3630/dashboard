@@ -68,35 +68,35 @@ class Welcome extends CI_Controller {
 			
 			 $email=$this->input->post('email');
 			 $passw = $this->input->post('password');
-			 $pass = $passw;
-	         $que=$this->db->query("select * from dev_users where email='".$email."' and password='".$pass."' ");
+			 $pass = md5($passw);
+	         $que=$this->db->query("select * from users where email='".$email."' and password='".$pass."' ");
 			 $result = $que->result_array();
 			 if($result)                 //enter in if email and password exsist
 			 {
 			 foreach($result as $userdata)
 			 {
 				$user_id= $userdata['id'];
-				$user_name= $userdata['user_name'];
+				$user_name= $userdata['first_name'];
 				$email=$userdata['email'];
-				$business_id=$userdata['business_id'];
-				$superadmin_status=$userdata['permission_super_Admin'];
+				/* $business_id=$userdata['business_id'];
+				$superadmin_status=$userdata['permission_super_Admin']; */
 				$role=$userdata['role'];
-				$iswholseller=$userdata['permission_wholeseller'];
+				//$iswholseller=$userdata['permission_wholeseller'];
 			 }
 			 
-			$session_array=array('user_id'=>$user_id,'business_id'=>$business_id,'name'=>$user_name,'email'=>$email,'superadmin_status'=>$superadmin_status,'role'=>$role,'iswholseller'=>$iswholseller);
+			$session_array=array('user_id'=>$user_id,'name'=>$user_name,'email'=>$email,'role'=>$role);
 			
 			
 				$_SESSION['status']= $session_array;
 			
 				
-					$table='dev_users';
+					/* $table='users';
 					$time=date("h:i:sa");
 					$date=date("Y/m/d");
 					$upd=$date.' '.$time;
 					$where=array('email'=>$email,'password'=>$pass);
 					$data=array('last_login'=>$upd);
-					$this->DataModel->update($table,$data,$where);
+					$this->DataModel->update($table,$data,$where); */
 					redirect('dashboard');
 			}
 			else

@@ -1340,7 +1340,7 @@ var KTDatatableJsonRemoteDemo = function() {
                 title: 'Store Logo',
 				 width: 250,
                 template: function(row) {
-                    return  "<img src='https://localhost/App-Login/"row.voucher_logo"' style='width:50px;heigth50px'>";
+                  //  return  "<img src='https://localhost/App-Login/"row.voucher_logo"' style='width:50px;heigth50px'>";
 				 }}, 
 			{
                 field: 'status',
@@ -3095,6 +3095,215 @@ var KTDatatableJsonRemoteDemo = function() {
         
         $('#kt_datatable_search_status, #kt_datatable_search_type').selectpicker();
     };
+	
+	
+	
+	
+	/**********************************************************HELLO PARHMACY************************************************/
+		  var pre = function() {
+		
+        var datatable = $('#kt_datatable').KTDatatable({
+            // datasource definition
+            data: {
+                type: 'remote',
+                source:"https://localhost/App-Login/GetNewPrescriptions",
+                pageSize: 10,
+            },
+
+            // layout definition
+            layout: {
+                scroll: false, // enable/disable datatable scroll both horizontal and vertical when needed.
+                footer: false // display/hide footer
+            },
+
+            // column sorting
+            sortable: true,            
+
+            pagination: true,
+
+            search: {
+                input: $('#kt_datatable_search_query'),
+                key: 'generalSearch'
+            },
+
+            // columns definition
+            columns: [{
+                field: 'id',
+                title: 'id',
+                sortable: false,
+                width: 20,
+                type: 'number',
+                selector: {
+                    class: ''
+                },
+                textAlign: 'center',
+            },
+			{
+                field: 'code',
+				 width: 100,
+                title: 'Code',
+            },
+			{
+                field: 'code_number',
+				 width: 100,
+                title: 'Code Number',         
+            },
+			
+			{
+				field: 'image_file',
+				 width: 100,
+				title: 'Image',
+				template: function(row)
+				{
+					return  "<img src='"+row.image_file+"' style='width:50px;height:50px'>"
+				}
+			},
+			     
+					
+					{
+						field: 'status',
+						 width: 60,
+						title: 'Status',
+						 template: function(row) {
+                    var statusw = {
+                        1: {
+                            'title': 'Pending',
+                            'class': ' label-light-success'
+                        },
+                        /* 2: {
+                            'title': 'In',
+                            'class': ' label-light-primary'
+                        },
+						3: {
+                            'title': 'Order',
+                            'class': ' label-light-success'
+                        },
+                        4: {
+                            'title': 'Panding',
+                            'class': ' label-light-primary'
+                        }, */
+                       
+                    };                      
+                    return  statusw[row.status].title; 
+                },
+					},
+					{
+						field: 'created_at',
+						 width: 100,
+						title: 'created_at',         
+					},
+            /*  {              
+                field: 'app_status',
+                title: 'Last Login',
+                // callback function support for column rendering
+                template: function(row) {
+                    var status = {
+                        0: {
+                            'title': 'De-Activate',
+                            'class': ' label-light-success'
+                        },
+                        1: {
+                            'title': 'Activate',
+                            'class': ' label-light-primary'
+                        },
+                        3: {
+                            'title': 'Canceled',
+                            'class': ' label-light-primary'
+                        },
+                        4: {
+                            'title': 'Success',
+                            'class': ' label-light-success'
+                        },
+                        5: {
+                            'title': 'Info',
+                            'class': ' label-light-info'
+                        },            
+                        6: {
+                            'title': 'Danger',
+                            'class': ' label-light-danger'                    
+                        },
+                        7: {
+                            'title': 'Warning',
+                            'class': ' label-light-warning'
+                        },
+                    };                      
+                    return '<span class="label font-weight-bold label-lg' + status[row.app_status].class + ' label-inline">' + status[row.app_status].title + '</span>';
+                },
+            }, */ /*  {
+                field: 'iswholeapp',
+                title: 'Login as this User',
+                autoHide: false,
+                // callback function support for column rendering
+                template: function(row) {
+				
+                    var status = {
+                        0: {
+                            'title': 'Contractor App',
+                            'state': 'danger'
+                        },
+                        1: {
+                            'title': 'Wholsaler App',
+                            'state': 'primary'
+                        },
+                        2: {
+                            'title': 'Invoice Management',
+                            'state': 'success'
+                        },
+                    };
+                    return '<span class="label label-' + status[row.iswholeapp].state + ' label-dot mr-2"></span><span class="font-weight-bold text-' + status[row.iswholeapp].state + '">' +
+                        status[row.iswholeapp].title + '</span>';
+                },
+            }, */  {
+                field: 'Actions',
+                title: 'Actions',
+                sortable: false,
+                width: 100,
+                autoHide: false,
+                overflow: 'visible',
+                template: function(row) {
+					var host = window.location.host; 
+				   
+                    return '\
+                       \
+                        <a href="App-Login/ViewPrescription?id='+row.id+'" class="btn btn-sm btn-clean btn-icon mr-2" title="Edit details">\
+                            <span class="svg-icon svg-icon-md">\
+                                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">\
+                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">\
+                                        <rect x="0" y="0" width="24" height="24"/>\
+                                        <path d="M8,17.9148182 L8,5.96685884 C8,5.56391781 8.16211443,5.17792052 8.44982609,4.89581508 L10.965708,2.42895648 C11.5426798,1.86322723 12.4640974,1.85620921 13.0496196,2.41308426 L15.5337377,4.77566479 C15.8314604,5.0588212 16,5.45170806 16,5.86258077 L16,17.9148182 C16,18.7432453 15.3284271,19.4148182 14.5,19.4148182 L9.5,19.4148182 C8.67157288,19.4148182 8,18.7432453 8,17.9148182 Z" fill="#000000" fill-rule="nonzero"\ transform="translate(12.000000, 10.707409) rotate(-135.000000) translate(-12.000000, -10.707409) "/>\
+                                        <rect fill="#000000" opacity="0.3" x="5" y="20" width="15" height="2" rx="1"/>\
+                                    </g>\
+                                </svg>\
+                            </span>\
+                        </a>\
+                      ';
+                },            
+            }],
+
+        });
+
+        $('#kt_datatable_search_status, #kt_datatable_search_type').selectpicker();
+    }; 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
     return {
         // public functions
         init: function() {
@@ -3182,6 +3391,11 @@ var KTDatatableJsonRemoteDemo = function() {
 				{
 					
 					fillter();
+				}
+				if(myarr[index-1]=="Prescriptions")
+				{
+					
+					pre();
 				}
 				
         }

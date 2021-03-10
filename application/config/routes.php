@@ -93,7 +93,7 @@ $route['gotoprinter']='OrdersController/Printer';
 $route['insertidintableforprint']='OrdersController/InsertIdinTableForPrint';
 $route['Cancleorder']='OrdersController/CancleOrder';
 $route['addline']='OrdersController/AddLine';
-$route['manageOrder']='OrdersController/ManageOrder';
+$route['ViewPrescription']='OrdersController/ManageOrder';
 $route['manageOrderEdit']='OrdersController/EditManageOrder'; //EDIT SINGLE ORDER
 $route['updateqty']='OrdersController/UpdateQty';
 $route['GetBySky']='OrdersController/GetProductBySkuID';
@@ -367,7 +367,14 @@ $route['AddNewThemeCat']="NewThemeController/AddNewThemeCat";
 $route['EditNewThemeCategory']="NewThemeController/EditNewThemeCategory";
 $route['changeCatNewTheme']="NewThemeController/changeCatNewTheme";
 $route['NewThemeFillter']="NewThemeController/NewThemeFillter";
-$route['AddNewThemeFilter']="NewThemeController/AddNewThemeFilter";    
+$route['AddNewThemeFilter']="NewThemeController/AddNewThemeFilter";  
+
+
+//HP APP ROUTES
+
+$route['Prescriptions']="PrescriptionsController/Prescriptions";
+$route['GetNewPrescriptions']="PrescriptionsController/GetNewPrescriptions";
+$route['ExceptPrescription']="PrescriptionsController/ExceptPrescription";
 $route['404_override'] = '';     
 $route['translate_uri_dashes'] = FALSE;
 

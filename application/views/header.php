@@ -247,9 +247,9 @@ h3.font-size-lg.text-dark.font-weight-bold.mb-6 {
 										<div >
 								
 
-									<h5><?php echo $thenaame.' ';  if(isset($_SESSION['status'])){ if($_SESSION['status']['role']=='2') { echo "Admin";  }else{ echo "Super Admin";}}?> </h5>
+									<h5><?php //echo $thenaame.' ';  if(isset($_SESSION['status'])){ if($_SESSION['status']['role']=='2') { echo "Admin";  }else{ echo "Super Admin";}}?> </h5>
 									
-										<!--<span class="kt-header__topbar-welcome kt-hidden-mobile">Hi <?php if(isset($_SESSION['status'])){ echo ucfirst($_SESSION['status']['name']); }?></span>-->
+										<!--<span class="kt-header__topbar-welcome kt-hidden-mobile">Hi <?php //if(isset($_SESSION['status'])){ echo ucfirst($_SESSION['status']['name']); }?></span>-->
 										
 
 										
