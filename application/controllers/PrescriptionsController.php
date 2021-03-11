@@ -50,6 +50,23 @@ class PrescriptionsController extends CI_Controller
 			}
 		}
 	}
+	public function UnExceptPrescription()
+	{
+		$id=$_POST['id'];
+		$this->db->query("update prescriptions set status=1 where id=$id");
+		if($this->db->affected_rows())
+		{
+			$this->db->query("update prescription_details set status=1 where prescription_id=$id");
+			if($this->db->affected_rows())
+			{
+				echo "Prescription UnExceptedAccepted";
+			}
+			else
+			{
+				echo "Oprtaion Failed";
+			}
+		}
+	}
 	
 }
 		

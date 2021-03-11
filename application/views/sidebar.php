@@ -34,7 +34,7 @@ session_start();
 						<!--begin::Menu Container-->
 						<div id="kt_aside_menu" class="aside-menu my-4" data-menu-vertical="1" data-menu-scroll="1" data-menu-dropdown-timeout="500">
 							<ul class="menu-nav">
-								<?php if(isset($_SESSION['status']) && $_SESSION['status']['role']=='4'){	?>
+								<?php if(isset($_SESSION['status']) && $_SESSION['status']['role']=='4'){ echo "set";	?>
 								<li  class="menu-item " aria-haspopup="true" >
 									<a href="<?php echo site_url('Prescriptions');?>" class="menu-link ">
 										<span class="svg-icon menu-icon">
@@ -57,7 +57,7 @@ session_start();
 									
 									</div>
 								</li>
-								<?php } 
+								<?php }else{ print_r($_SESSION['status']);}
 									
 									
 									

@@ -3106,7 +3106,7 @@ var KTDatatableJsonRemoteDemo = function() {
             // datasource definition
             data: {
                 type: 'remote',
-                source:"https://localhost/App-Login/GetNewPrescriptions",
+                source:"https://localhost/dashboard/GetNewPrescriptions",
                 pageSize: 10,
             },
 
@@ -3265,7 +3265,7 @@ var KTDatatableJsonRemoteDemo = function() {
 				   
                     return '\
                        \
-                        <a href="App-Login/ViewPrescription?id='+row.id+'" class="btn btn-sm btn-clean btn-icon mr-2" title="Edit details">\
+                        <a href="dashboard/ViewPrescription?id='+row.id+'" class="btn btn-sm btn-clean btn-icon mr-2" title="Edit details">\
                             <span class="svg-icon svg-icon-md">\
                                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">\
                                     <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">\

@@ -120,8 +120,8 @@ div#menu1 .subtot h3 {
 <div class="col-sm-7">
 <!--<div class="save_btn btn_sec2" ><button  data-toggle="modal" data-target="#ordermodal" type="button" class="btn btn-default">MORE DETAILS</button></div>-->
 
-<div class="btn_sec2 exdiv" style="margin-top: 10px !important;"><button  data-toggle="modal" data-target="#approvemodal" type="button" class="save_btn  btn btn-info">Except</button></div>
-<div style="display:none" class="unexdiv btn_sec2" style="margin-top: 10px !important;"><button  data-toggle="modal" data-target="#approvemodal" type="button" class="unexcpt  btn btn-danger">UnExecpt</button></div>
+<div class=" unexdivbtn_sec2 " style="margin-top: 10px !important;"><button  data-toggle="modal" data-target="#approvemodal" type="button" class="save_btn  btn btn-info">Except</button></div>
+
 </div>
 
 
@@ -144,30 +144,41 @@ $('.save_btn').click(function(){
   if($(this).hasClass('Excepted'))
   {
 	  $(this).removeClass('Excepted');
+	   $(this).addClass('UnExcepted');
 	  $.ajax({
-		url:"https://localhost/App-Login/ExceptPrescription",
+		url:"https://localhost/dashboard/UnExceptPrescription",
 		method:"post",
 		data:{'id':<?php echo $_GET['id'];?> },
 		success:function(data)
 		{
 			alert(data);
-			$('.exdiv').css('display','none');
-			$('.unexdiv').css('display','block');
+			$('.save_btn').html('Accept');
+			$('.save_btn').removeClass('btn-danger');
+			$('.save_btn').addClass('btn-info');
+			
+			
+			
 		}
 		});
   }
+  else
+  {
+	  $(this).removeClass('UnExcepted');
+	   $(this).addClass('Excepted');
   
 	$.ajax({
-		url:"https://localhost/App-Login/ExceptPrescription",
+		url:"https://localhost/dashboard/ExceptPrescription",
 		method:"post",
 		data:{'id':<?php echo $_GET['id'];?> },
 		success:function(data)
 		{
 			alert(data);
-			$('.exdiv').css('display','none');
-			$('.unexdiv').css('display','block');
+			$('.save_btn').html('UnAccept');
+			$('.save_btn').removeClass('btn-info');
+			$('.save_btn').addClass('btn-danger');
 		}
 	});
+  }
 });
 
 </script>

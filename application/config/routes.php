@@ -375,6 +375,7 @@ $route['AddNewThemeFilter']="NewThemeController/AddNewThemeFilter";
 $route['Prescriptions']="PrescriptionsController/Prescriptions";
 $route['GetNewPrescriptions']="PrescriptionsController/GetNewPrescriptions";
 $route['ExceptPrescription']="PrescriptionsController/ExceptPrescription";
+$route['UnExceptPrescription']="PrescriptionsController/UnExceptPrescription";
 $route['404_override'] = '';     
 $route['translate_uri_dashes'] = FALSE;
 
