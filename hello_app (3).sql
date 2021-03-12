@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.6deb5ubuntu0.5
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Mar 11, 2021 at 07:03 AM
--- Server version: 5.7.33-0ubuntu0.18.04.1
--- PHP Version: 7.2.24-0ubuntu0.18.04.7
+-- Host: 127.0.0.1
+-- Generation Time: Mar 12, 2021 at 03:52 AM
+-- Server version: 10.1.38-MariaDB
+-- PHP Version: 7.3.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -880,12 +882,12 @@ CREATE TABLE `prescriptions` (
 --
 
 INSERT INTO `prescriptions` (`id`, `code`, `code_number`, `user_id`, `image_file`, `status`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'PCV11000001', '11000001', 10, 'download.jpg', 1, '2021-01-15 21:25:47', '2021-02-01 19:38:16', '2021-02-01 00:00:00'),
-(2, 'PCV11000002', '11000002', 10, '1610735839.jpg', 1, '2021-01-15 21:37:19', '2021-02-01 20:24:05', '2021-02-01 00:00:00'),
+(1, 'PCV11000001', '11000001', 10, 'download.jpg', 2, '2021-01-15 21:25:47', '2021-02-01 19:38:16', '2021-02-01 00:00:00'),
+(2, 'PCV11000002', '11000002', 10, '1610735839.jpg', 2, '2021-01-15 21:37:19', '2021-02-01 20:24:05', '2021-02-01 00:00:00'),
 (3, 'PCV11000003', '11000003', 11, '1610736002.jpg', 1, '2021-01-15 21:40:02', '2021-01-15 21:40:02', NULL),
 (4, 'PCV11000004', '11000004', 11, '1610739482.png', 1, '2021-01-15 22:38:02', '2021-01-15 22:38:02', NULL),
 (5, 'PCV11000005', '11000005', 10, '1610739719.JPEG', 1, '2021-01-15 22:41:59', '2021-02-01 20:24:42', '2021-02-01 00:00:00'),
-(6, 'PCV11000006', '11000006', 10, '1610807091.JPEG', 1, '2021-01-16 17:24:51', '2021-02-01 20:40:31', '2021-02-01 00:00:00'),
+(6, 'PCV11000006', '11000006', 10, '1610807091.JPEG', 2, '2021-01-16 17:24:51', '2021-02-01 20:40:31', '2021-02-01 00:00:00'),
 (7, 'PCV11000007', '11000007', 92, '1610816697.jpg', 1, '2021-01-16 20:05:02', '2021-01-16 20:05:02', NULL),
 (8, 'PCV11000008', '11000008', 92, '1610816728.png', 1, '2021-01-16 20:05:28', '2021-01-16 20:05:28', NULL),
 (9, 'PCV11000009', '11000009', 10, '1610817802.jpg', 1, '2021-01-16 20:23:22', '2021-02-02 21:17:02', '2021-02-02 00:00:00'),
@@ -948,12 +950,12 @@ CREATE TABLE `prescription_details` (
 --
 
 INSERT INTO `prescription_details` (`id`, `prescription_id`, `store_id`, `group_name`, `prescription`, `bin`, `price`, `status`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, 'RXGO', 'Medname 200mg tablet', '789456', '$50.40', 1, '2021-01-15 22:10:38', '2021-01-15 22:10:38'),
-(2, 2, 1, 'RXGO', 'Medname 200mg tablet', '789456', '$50.40', 1, '2021-01-15 22:10:38', '2021-01-15 22:10:38'),
+(1, 1, 1, 'RXGO', 'Medname 200mg tablet', '789456', '$50.40', 2, '2021-01-15 22:10:38', '2021-01-15 22:10:38'),
+(2, 2, 1, 'RXGO', 'Medname 200mg tablet', '789456', '$50.40', 2, '2021-01-15 22:10:38', '2021-01-15 22:10:38'),
 (3, 3, 1, 'RXGO', 'Medname 200mg tablet', '789456', '$50.40', 1, '2021-01-15 22:10:38', '2021-01-15 22:10:38'),
 (4, 4, 1, 'RXGO', 'Medname 200mg tablet', '789456', '$50.40', 1, '2021-01-15 22:10:38', '2021-01-15 22:10:38'),
 (5, 5, 1, 'RXGO', 'Medname 200mg tablet', '789456', '$50.40', 1, '2021-01-15 22:10:38', '2021-01-15 22:10:38'),
-(6, 6, 1, 'RXGO', 'Medname 200mg tablet', '789456', '$50.40', 1, '2021-01-15 22:10:38', '2021-01-15 22:10:38'),
+(6, 6, 1, 'RXGO', 'Medname 200mg tablet', '789456', '$50.40', 2, '2021-01-15 22:10:38', '2021-01-15 22:10:38'),
 (7, 7, 1, 'RXGO', 'Medname 200mg tablet', '789456', '$50.40', 1, '2021-01-15 22:10:38', '2021-01-15 22:10:38'),
 (8, 8, 1, 'RXGO', 'Medname 200mg tablet', '789456', '$50.40', 1, '2021-01-15 22:10:38', '2021-01-15 22:10:38'),
 (9, 9, 1, 'RXGO', 'Medname 200mg tablet', '789456', '$50.40', 1, '2021-01-15 22:10:38', '2021-01-15 22:10:38'),
@@ -1145,12 +1147,12 @@ CREATE TABLE `role_has_permissions` (
 
 INSERT INTO `role_has_permissions` (`permission_id`, `role_id`) VALUES
 (1, 1),
+(1, 2),
 (2, 1),
+(2, 2),
 (3, 1),
 (4, 1),
-(5, 1),
-(1, 2),
-(2, 2);
+(5, 1);
 
 -- --------------------------------------------------------
 
@@ -1264,6 +1266,7 @@ INSERT INTO `speciality_images` (`id`, `name`, `image`, `status`, `created_at`, 
 
 CREATE TABLE `stores` (
   `id` int(11) NOT NULL,
+  `register_id` varchar(256) NOT NULL,
   `category_id` int(11) NOT NULL,
   `name` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL DEFAULT 'helloappstore@medical.com',
@@ -1283,13 +1286,36 @@ CREATE TABLE `stores` (
 -- Dumping data for table `stores`
 --
 
-INSERT INTO `stores` (`id`, `category_id`, `name`, `email`, `address`, `logo`, `rating`, `min_order`, `helpline_tag`, `contact`, `voucher_logo`, `voucher_text`, `status`, `created_at`) VALUES
-(1, 1, 'Apollo Pharmacy', 'helloappstore@medical.com', '517, Highland Ave, Mullens, WV, 25882', 'store_logo.jpg', '4.9', 0, 'RXGO helpline', '1800-125-256', 'hp_logo.png', 'RXGO instant saving voucher', 1, '2021-01-15 20:19:04'),
-(2, 1, 'Ved Pharmacy', 'helloappstore@medical.com', '517, Highland Ave, Mullens, WV, 25882', 'store_logo.jpg', '4.6', 0, 'AMPC helpline', '1800-963-589', 'hp_logo.png', 'RXGO instant saving voucher', 1, '2021-01-15 20:19:04'),
-(3, 2, 'Parker Pharmacy', 'helloappstore@medical.com', '517, Highland Ave, Mullens, WV, 25882', 'store_logo.jpg', '4.8', 0, 'KPNR helpline', '1800-145-784', 'hp_logo.png', 'RXGO instant saving voucher', 1, '2021-01-15 20:19:04'),
-(4, 2, 'Loren Parker Store', 'helloappstore@medical.com', '517, Highland Ave, Mullens, WV, 25882', 'store_logo.jpg', '4.8', 0, 'PTR helpline', '1800-147-536', 'hp_logo.png', 'RXGO instant saving voucher', 1, '2021-01-15 20:19:04'),
-(5, 2, 'Monte Pharmacy', 'helloappstore@medical.com', '517, Highland Ave, Mullens, WV, 25882', 'store_logo.jpg', '4.5', 0, 'DPIE helpline', '1800-478-888', 'hp_logo.png', 'RXGO instant saving voucher', 1, '2021-01-15 20:19:04'),
-(6, 3, 'Aliana Pharmacy', 'helloappstore@medical.com', '517, Highland Ave, Mullens, WV, 25882', 'store_logo.jpg', '4.4', 3, 'LIBI helpline', '1800-333-254', 'hp_logo.png', 'RXGO instant saving voucher', 1, '2021-01-15 20:19:04');
+INSERT INTO `stores` (`id`, `register_id`, `category_id`, `name`, `email`, `address`, `logo`, `rating`, `min_order`, `helpline_tag`, `contact`, `voucher_logo`, `voucher_text`, `status`, `created_at`) VALUES
+(1, '110', 1, 'Apollo Pharmacy', 'helloappstore@medical.com', '517, Highland Ave, Mullens, WV, 25882', 'store_logo.jpg', '4.9', 0, 'RXGO helpline', '1800-125-256', 'hp_logo.png', 'RXGO instant saving voucher', 1, '2021-01-15 20:19:04'),
+(2, '', 1, 'Ved Pharmacy', 'helloappstore@medical.com', '517, Highland Ave, Mullens, WV, 25882', 'store_logo.jpg', '4.6', 0, 'AMPC helpline', '1800-963-589', 'hp_logo.png', 'RXGO instant saving voucher', 1, '2021-01-15 20:19:04'),
+(3, '', 2, 'Parker Pharmacy', 'helloappstore@medical.com', '517, Highland Ave, Mullens, WV, 25882', 'store_logo.jpg', '4.8', 0, 'KPNR helpline', '1800-145-784', 'hp_logo.png', 'RXGO instant saving voucher', 1, '2021-01-15 20:19:04'),
+(4, '', 2, 'Loren Parker Store', 'helloappstore@medical.com', '517, Highland Ave, Mullens, WV, 25882', 'store_logo.jpg', '4.8', 0, 'PTR helpline', '1800-147-536', 'hp_logo.png', 'RXGO instant saving voucher', 1, '2021-01-15 20:19:04'),
+(5, '', 2, 'Monte Pharmacy', 'helloappstore@medical.com', '517, Highland Ave, Mullens, WV, 25882', 'store_logo.jpg', '4.5', 0, 'DPIE helpline', '1800-478-888', 'hp_logo.png', 'RXGO instant saving voucher', 1, '2021-01-15 20:19:04'),
+(6, '', 3, 'Aliana Pharmacy', 'helloappstore@medical.com', '517, Highland Ave, Mullens, WV, 25882', 'store_logo.jpg', '4.4', 3, 'LIBI helpline', '1800-333-254', 'hp_logo.png', 'RXGO instant saving voucher', 1, '2021-01-15 20:19:04');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `store_relation_with_prescription`
+--
+
+CREATE TABLE `store_relation_with_prescription` (
+  `id` int(50) NOT NULL,
+  `store_id` varchar(256) NOT NULL,
+  `store_register_id` varchar(256) NOT NULL,
+  `Prescription_id` varchar(256) NOT NULL,
+  `after_accepte_status` varchar(256) NOT NULL,
+  `created_at` timestamp(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `store_relation_with_prescription`
+--
+
+INSERT INTO `store_relation_with_prescription` (`id`, `store_id`, `store_register_id`, `Prescription_id`, `after_accepte_status`, `created_at`) VALUES
+(1, '1', '110', '2', '1', '2021-03-11 17:33:06.955032'),
+(2, '1', '110', '6', '1', '2021-03-11 17:32:46.195845');
 
 -- --------------------------------------------------------
 
@@ -1562,7 +1588,7 @@ INSERT INTO `users` (`id`, `first_name`, `last_name`, `email`, `email_verified_a
 (107, 'alex', NULL, 'alexs@yopmail.com', NULL, '$2y$10$cvr1qent6g3HXKRT8wz0deis9TuxU5pOf0.JHic.FuaVC5hjsVgI.', NULL, 'JCILDS7094U2UTU', '2', NULL, NULL, NULL, 3, NULL, '8794541520', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, NULL, NULL, NULL, 4, '\'\'', '\'\'', '\'\'', 2, 1, 0, 1, 1, 1, NULL, NULL, NULL, '2021-01-30 11:54:52', '2021-01-30 11:54:52'),
 (108, 'pardeep yadav', NULL, 'pradeep.scorpsoft@gmail.com', NULL, '$2y$10$TglDpVHbHJNKEKTRAb1tEOeTo7sKJ8TkIQTTo7UbBAJWSdfMl.F..', NULL, NULL, 'A', NULL, NULL, NULL, 3, NULL, '7589219984', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, NULL, NULL, NULL, 4, '\'\'', '\'\'', '\'\'', 2, 1, 0, 1, 1, 1, NULL, NULL, NULL, '2021-02-03 05:49:00', '2021-02-03 05:49:00'),
 (109, 'Komal', NULL, 'komal@gmail.com', NULL, '$2y$10$Avl4JGXhlRfyS5f1d7q8C.O1K6tS/JA2GlcqyVxs13WDRugjVWH2e', NULL, NULL, 'A', NULL, NULL, 4345, 3, NULL, '7814264608', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, NULL, NULL, NULL, 4, '\'\'', '\'\'', '\'\'', 2, 1, 0, 1, 1, 1, NULL, NULL, NULL, '2021-02-04 10:10:39', '2021-03-07 09:47:06'),
-(110, 'Bindia Wadhwa', NULL, 'wadhwa.bindia@gmail.com', NULL, '$2y$10$JPlmTnF1Y/Z9OzN.rfHiGue/GC1zKLieNBtOgw09.K1IyidcBGG.K', NULL, 'eyJhbGciOiJSUzI1NiIsImtpZCI6IjAzYjJkMjJjMmZlY2Y4NzNlZDE5ZTViOGNmNzA0YWZiN2UyZWQ0YmUiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiIzNjA0MjYwNDIxODktODFxODBvMjg3ZnJ2aTdqNHQ5dTJhNnYyZzBsdWVhM2QuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJhdWQiOiIzNjA0MjYwNDIxODktcWtuNDVnYTA3YnRpYjZ2Zjl2cTgzMTFrODRyZW1tYXYuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJzdWIiOiIxMDUyNDk4OTUwMDMxNTc3NDM5OTUiLCJlbWFpbCI6IndhZGh3YS5iaW5kaWFAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsIm5hbWUiOiJCaW5kaWEgV2FkaHdhIiwicGljdHVyZSI6Imh0dHBzOi8vbGg1Lmdvb2dsZXVzZXJjb250ZW50LmNvbS8tc3lGY3I5SnQyY1UvQUFBQUFBQUFBQUkvQUFBQUFBQUFBQUEvQU1adXVjbk5aTFpFMFBac0pUdzdqZ3FOMzNwMEZhdDhkUS9zOTYtYy9waG90by5qcGciLCJnaXZlbl9uYW1lIjoiQmluZGlhIiwiZmFtaWx5X25hbWUiOiJXYWRod2EiLCJsb2NhbGUiOiJlbiIsImlhdCI6MTYxMjQzNDQ1MywiZXhwIjoxNjEyNDM4MDUzfQ.cxUBRwevzSe5ABM-HzOIs-LNm-5P8sCMLvDFlU9M6XbGuDTY7mttkqAFAo2ZlfjAVKeM-QabljPXW8it0ikXQG9bhaLGdivQAsQ1_h8PFns2pJFsWHBoWWeeQc8e4WfGkwZFvfr8FXP6uZ_ABZJOs23-OQWKxsQdwMnNX-AOSOId56n5ZcAoe9I29UY9ELqhprO5DSoyVSk0pkrQWcnsVdTbUZph-gUpoAno_B7UeLVR9Bdu3Y4I_O2Ew7Q60FSoFHOUquf-mpfjqbXdAdpWIHgy8ewGfDpaS_8cLQIOB43VnD8aTyI8tKZ_ZBGnk72ejJ_1ecu-E3JhHK2yJXTpFw', 'A', NULL, NULL, 4686, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, NULL, NULL, NULL, 4, '\'\'', '\'\'', '\'\'', 2, 1, 0, 1, 1, 1, NULL, NULL, NULL, '2021-02-04 10:27:37', '2021-02-04 10:42:32'),
+(110, 'Apollo Pharmacy', NULL, 'aplo@gmail.com', NULL, '5b2b130a7fdc9cf9f6bb1e250d960868', NULL, 'eyJhbGciOiJSUzI1NiIsImtpZCI6IjAzYjJkMjJjMmZlY2Y4NzNlZDE5ZTViOGNmNzA0YWZiN2UyZWQ0YmUiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJhenAiOiIzNjA0MjYwNDIxODktODFxODBvMjg3ZnJ2aTdqNHQ5dTJhNnYyZzBsdWVhM2QuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJhdWQiOiIzNjA0MjYwNDIxODktcWtuNDVnYTA3YnRpYjZ2Zjl2cTgzMTFrODRyZW1tYXYuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJzdWIiOiIxMDUyNDk4OTUwMDMxNTc3NDM5OTUiLCJlbWFpbCI6IndhZGh3YS5iaW5kaWFAZ21haWwuY29tIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsIm5hbWUiOiJCaW5kaWEgV2FkaHdhIiwicGljdHVyZSI6Imh0dHBzOi8vbGg1Lmdvb2dsZXVzZXJjb250ZW50LmNvbS8tc3lGY3I5SnQyY1UvQUFBQUFBQUFBQUkvQUFBQUFBQUFBQUEvQU1adXVjbk5aTFpFMFBac0pUdzdqZ3FOMzNwMEZhdDhkUS9zOTYtYy9waG90by5qcGciLCJnaXZlbl9uYW1lIjoiQmluZGlhIiwiZmFtaWx5X25hbWUiOiJXYWRod2EiLCJsb2NhbGUiOiJlbiIsImlhdCI6MTYxMjQzNDQ1MywiZXhwIjoxNjEyNDM4MDUzfQ.cxUBRwevzSe5ABM-HzOIs-LNm-5P8sCMLvDFlU9M6XbGuDTY7mttkqAFAo2ZlfjAVKeM-QabljPXW8it0ikXQG9bhaLGdivQAsQ1_h8PFns2pJFsWHBoWWeeQc8e4WfGkwZFvfr8FXP6uZ_ABZJOs23-OQWKxsQdwMnNX-AOSOId56n5ZcAoe9I29UY9ELqhprO5DSoyVSk0pkrQWcnsVdTbUZph-gUpoAno_B7UeLVR9Bdu3Y4I_O2Ew7Q60FSoFHOUquf-mpfjqbXdAdpWIHgy8ewGfDpaS_8cLQIOB43VnD8aTyI8tKZ_ZBGnk72ejJ_1ecu-E3JhHK2yJXTpFw', 'A', NULL, NULL, 4686, 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, NULL, NULL, NULL, 4, '\'\'', '\'\'', '\'\'', 2, 1, 0, 1, 1, 1, NULL, NULL, NULL, '2021-02-04 10:27:37', '2021-03-11 16:11:04'),
 (111, 'Heena Dhawan', NULL, 'heenu.dhawan29@gmail.com', NULL, '$2y$10$aYCVJxyjqyc4pxNFgzYn.O/CFrMQFA6KXCdMvw6QZgmU9xGGkZg96', NULL, '109587423999162192135', 'i', NULL, NULL, NULL, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, NULL, NULL, NULL, 4, '\'\'', '\'\'', '\'\'', 2, 1, 0, 1, 1, 1, NULL, NULL, NULL, '2021-03-07 09:44:31', '2021-03-07 09:44:31'),
 (112, 'test', NULL, 'test@gmail.com', NULL, '$2y$10$TPT0OntxYEFf5qS4ZVuKqO1vv2G2XeI5Nsc/d2uShsKwGVnk8f9ke', NULL, NULL, 'i', NULL, NULL, NULL, 3, NULL, '7814264608', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, NULL, NULL, NULL, 4, '\'\'', '\'\'', '\'\'', 2, 1, 0, 1, 1, 1, NULL, NULL, NULL, '2021-03-07 09:45:45', '2021-03-07 09:45:45');
 
@@ -1765,6 +1791,12 @@ ALTER TABLE `stores`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `store_relation_with_prescription`
+--
+ALTER TABLE `store_relation_with_prescription`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `store_services`
 --
 ALTER TABLE `store_services`
@@ -1814,131 +1846,163 @@ ALTER TABLE `user_permission`
 --
 ALTER TABLE `addresses`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
 --
 -- AUTO_INCREMENT for table `carts`
 --
 ALTER TABLE `carts`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=247;
+
 --
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
 --
 -- AUTO_INCREMENT for table `coupons`
 --
 ALTER TABLE `coupons`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+
 --
 -- AUTO_INCREMENT for table `drugs`
 --
 ALTER TABLE `drugs`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+
 --
 -- AUTO_INCREMENT for table `mails`
 --
 ALTER TABLE `mails`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+
 --
 -- AUTO_INCREMENT for table `mail_cron`
 --
 ALTER TABLE `mail_cron`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=137;
+
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=73;
+
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+
 --
 -- AUTO_INCREMENT for table `page`
 --
 ALTER TABLE `page`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
 --
 -- AUTO_INCREMENT for table `page_content`
 --
 ALTER TABLE `page_content`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
 -- AUTO_INCREMENT for table `permissions`
 --
 ALTER TABLE `permissions`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
 --
 -- AUTO_INCREMENT for table `prescriptions`
 --
 ALTER TABLE `prescriptions`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+
 --
 -- AUTO_INCREMENT for table `prescription_details`
 --
 ALTER TABLE `prescription_details`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
+
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
+
 --
 -- AUTO_INCREMENT for table `screens`
 --
 ALTER TABLE `screens`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT for table `screen_ads`
 --
 ALTER TABLE `screen_ads`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
 --
 -- AUTO_INCREMENT for table `service_category`
 --
 ALTER TABLE `service_category`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
 --
 -- AUTO_INCREMENT for table `speciality_images`
 --
 ALTER TABLE `speciality_images`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
 --
 -- AUTO_INCREMENT for table `stores`
 --
 ALTER TABLE `stores`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `store_relation_with_prescription`
+--
+ALTER TABLE `store_relation_with_prescription`
+  MODIFY `id` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT for table `store_services`
 --
 ALTER TABLE `store_services`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
 --
 -- AUTO_INCREMENT for table `subcat_store`
 --
 ALTER TABLE `subcat_store`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
 --
 -- AUTO_INCREMENT for table `subscription_plan`
 --
 ALTER TABLE `subscription_plan`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+
 --
 -- AUTO_INCREMENT for table `sub_category`
 --
 ALTER TABLE `sub_category`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=113;
+
 --
 -- AUTO_INCREMENT for table `user_permission`
 --
 ALTER TABLE `user_permission`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
 --
 -- Constraints for dumped tables
 --
@@ -1949,6 +2013,7 @@ ALTER TABLE `user_permission`
 ALTER TABLE `role_has_permissions`
   ADD CONSTRAINT `role_has_permissions_permission_id_foreign` FOREIGN KEY (`permission_id`) REFERENCES `permissions` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `role_has_permissions_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

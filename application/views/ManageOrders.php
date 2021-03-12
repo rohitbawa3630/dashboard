@@ -2,9 +2,16 @@
 	error_reporting(0); 
 	$editid=$_GET['id'];
 	$obj=$this->db->query("select * from  prescriptions inner join prescription_details on prescriptions.id=prescription_details.prescription_id where prescriptions.id=$editid");
-	
 	$dataArray=$obj->result_array();
 	$data=$dataArray[0];
+	if(isset($_SESSION['status']))
+	{
+		$user_id=$_SESSION['status']['user_id'];
+	}
+	else
+	{
+		$user_id=0;
+	}
  ?>	
 
 <link href="<?php base_url()?>//assets/css/demo1/style.css">
@@ -121,7 +128,17 @@ div#menu1 .subtot h3 {
 <!--<div class="save_btn btn_sec2" ><button  data-toggle="modal" data-target="#ordermodal" type="button" class="btn btn-default">MORE DETAILS</button></div>-->
 
 <div class=" unexdivbtn_sec2 " style="margin-top: 10px !important;"><button  data-toggle="modal" data-target="#approvemodal" type="button" class="save_btn  btn btn-info">Except</button></div>
-
+<div class="form-group row">
+  <label class="col-3 col-form-label">Dark</label>
+  <div class="col-3">
+   <span class="switch switch-outline switch-icon switch-dark">
+    <label>
+     <input type="checkbox" checked="checked" name="select"/>
+     <span></span>
+    </label>
+   </span>
+  </div>
+ </div>
 </div>
 
 
@@ -148,7 +165,7 @@ $('.save_btn').click(function(){
 	  $.ajax({
 		url:"https://localhost/dashboard/UnExceptPrescription",
 		method:"post",
-		data:{'id':<?php echo $_GET['id'];?> },
+		data:{'PrescriptionId':<?php echo $_GET['id'];?> ,'user_id':<?php echo $user_id ;?>},
 		success:function(data)
 		{
 			alert(data);
@@ -169,7 +186,7 @@ $('.save_btn').click(function(){
 	$.ajax({
 		url:"https://localhost/dashboard/ExceptPrescription",
 		method:"post",
-		data:{'id':<?php echo $_GET['id'];?> },
+		data:{'PrescriptionId':<?php echo $_GET['id'];?> ,'user_id':<?php echo $user_id ;?>},
 		success:function(data)
 		{
 			alert(data);
