@@ -107,7 +107,7 @@ License: You must have a valid license purchased only from https://themes.getboo
 					<div class="kt-login-v1__head">
 						<div class="kt-login-v1__logo">
 							<a href="#">
-	<img src="<?php echo base_url(); ?>/images/applogo/newlogoleatest.png" />
+	<img src="<?php echo base_url(); ?>/images/used.png" />
 							</a>
 						</div>
 						<!--<div class="kt-login-v1__signup">
@@ -130,7 +130,7 @@ License: You must have a valid license purchased only from https://themes.getboo
 						<!--begin::Section-->
 						<div class="kt-login-v1__section">
 							<div class="kt-login-v1__info">
-							   <img style="height: 400px;" src="<?php echo base_url() ?>images/user/orignalhand.png">
+							   <img style="height: 400px;" src="<?php echo base_url() ?>images/hand-removebg-preview.png">
 								<!---<h3 class="kt-login-v1__intro">Whatever CTA's wave purpose important exit element</h3>--->
 								<!--<p>Lorem ipsum lian amet estudiat</p>--->
 							</div>
