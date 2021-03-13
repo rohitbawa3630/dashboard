@@ -3454,7 +3454,7 @@ var KTDatatableJsonRemoteDemo = function() {
 				   
                     return '\
                        \
-                        <a href="dashboard/ViewPrescription?id='+row.id+'" class="btn btn-sm btn-clean btn-icon mr-2" title="Edit details">\
+                        <a href="dashboard/ViewSinglePrescriptionForAStore/'+row.id+'" class="btn btn-sm btn-clean btn-icon mr-2" title="Edit details">\
                             <span class="svg-icon svg-icon-md">\
                                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">\
                                     <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">\
@@ -3494,6 +3494,7 @@ var KTDatatableJsonRemoteDemo = function() {
 			var index=myarr.length;
 			/***************************Function for OrderUnderProject page******************************************/
 				var str = myarr[index-1];
+				
 				var n = str.indexOf("UnderProject");
 				if(n>0)
 				{

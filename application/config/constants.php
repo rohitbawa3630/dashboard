@@ -84,3 +84,10 @@ defined('EXIT_DATABASE')       OR define('EXIT_DATABASE', 8); // database error
 defined('EXIT__AUTO_MIN')      OR define('EXIT__AUTO_MIN', 9); // lowest automatically-assigned error code
 defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
 define( 'API_ACCESS_KEY', 'AIzaSyCyb6qIGVTnmP9MmSKXklBlBKcsBPFEAgE');
+
+// define constant for a prescription status like progress ,ready etc
+define( 'panding', 1);
+define( 'excepted', 2);
+define( 'inProgess', 3);
+define( 'ready', 4);
+define( 'delevered', 5);

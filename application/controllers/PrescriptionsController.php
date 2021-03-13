@@ -108,7 +108,56 @@ class PrescriptionsController extends CI_Controller
 		$this->load->view('ExceptedPrescriptions.php');
 		$this->load->view('footer.php');
 	}
+	public function ViewSinglePrescriptionForAStore()
+	{
+		$editid=$this->uri->segment('2');
+		$obj=$this->db->query("select * from  prescriptions inner join prescription_details on prescriptions.id=prescription_details.prescription_id where prescriptions.id=$editid");
+		$dataArray=$obj->result_array();
+		$data=$dataArray[0];
+		
+		if(isset($_SESSION['status']))
+		{
+			$user_id=$_SESSION['status']['user_id'];
+		}
+		else
+		{
+			$user_id=0;
+		}
+		
+		$dataKey=array('data'=>$data,'userid'=>$user_id);
+		$this->load->view('header.php');
+		$this->load->view('sidebar.php');
+		$this->load->view('ViewSinglePrescriptionForAStore.php',$dataKey);
+		$this->load->view('footer.php');
+	}
+	// chage prescription status store like in progress or ready etc
+	public function ChangeStatusByStore()
+	{
+		$PrescriptionId=$_POST['PrescriptionId'];
+		$name=$_POST['name']; //3,4,5
+		$IsThisTrueOrFlaseRightNow=$_POST['IsThisTrueOrFlaseRightNow'];
+		$GetConst=array(3=>inProgess,4=>ready,5=>delevered);
+		
+		if($IsThisTrueOrFlaseRightNow)
+		{
+		    $state=$GetConst[$name];
+			$this->db->trans_start();
+			$this->db->query("update prescriptions set status=$state where id=$PrescriptionId");
+			$this->db->query("update prescription_details set status=$state where prescription_id=$PrescriptionId");
+			$this->db->query("update store_relation_with_prescription set after_accepte_status=$state where Prescription_id=$PrescriptionId");
+			$this->db->trans_complete();	
+			echo "okay";
+		}
+		else
+		{
+			
+		}
+	}
 	
+	public function testigMethod()
+	{ 
+	    
+	}
 }
 		
 	

@@ -371,13 +371,15 @@ $route['AddNewThemeFilter']="NewThemeController/AddNewThemeFilter";
 
 
 //HP APP ROUTES
-
+$route['testigMethod']="PrescriptionsController/testigMethod";
 $route['Prescriptions']="PrescriptionsController/Prescriptions";
 $route['GetNewPrescriptions']="PrescriptionsController/GetNewPrescriptions";
 $route['ExceptPrescription']="PrescriptionsController/ExceptPrescription";
 $route['UnExceptPrescription']="PrescriptionsController/UnExceptPrescription";
 $route['ViewExceptPrescription']="PrescriptionsController/ViewExceptPrescription";
 $route['ExceptedPrescriptions']="PrescriptionsController/ExceptedPrescriptions";
+$route['ViewSinglePrescriptionForAStore/:num']="PrescriptionsController/ViewSinglePrescriptionForAStore";
+$route['ChangeStatusByStore']="PrescriptionsController/ChangeStatusByStore";
 $route['404_override'] = '';     
 $route['translate_uri_dashes'] = FALSE;
 
