@@ -37,7 +37,7 @@ class PrescriptionsController extends CI_Controller
 	{
 		$PrescriptionId=$_POST['PrescriptionId'];
 		$user_id=$_POST['user_id'];
-		 $Store_Obj=$this->db->query("SELECT * FROM `stores` WHERE `store_register_id`= $user_id");
+		 $Store_Obj=$this->db->query("SELECT * FROM `stores` WHERE `register_id`= $user_id");
 		$store_array=$Store_Obj->result_array();
 		$store_id=$store_array[0]['id'];
 		$Store_relation_with_prescription=array('store_register_id'=>$user_id,'store_id'=>$store_id,'Prescription_id'=>$PrescriptionId,'after_accepte_status'=>'2');
@@ -55,7 +55,7 @@ class PrescriptionsController extends CI_Controller
 				$query = $this->db->where($where_array); 
 				$isexcept=$query->get()->result_id->num_rows;
 			
-                 if($isexcept)
+                 if($isexcept)  
 				 {
 					 $this->db->query("update store_relation_with_prescription set after_accepte_status=2 where prescription_id=$PrescriptionId");
 				 }
