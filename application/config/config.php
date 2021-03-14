@@ -23,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-$config['base_url'] = 'https://localhost/dashboard'; //http://app.pickmyorder.co.uk
+$config['base_url'] = 'http://15.206.100.247/dashboard'; //http://app.pickmyorder.co.uk
 
 /*
 |--------------------------------------------------------------------------
