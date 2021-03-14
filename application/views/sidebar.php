@@ -36,7 +36,7 @@ session_start();
 							<ul class="menu-nav">
 								<?php if(isset($_SESSION['status']) && $_SESSION['status']['role']=='4'){	?>
 								
-								<li class="menu-item menu-item-submenu " aria-haspopup="true" data-menu-toggle="hover">
+								<li class="menu-item menu-item-submenu menu-item-open" aria-haspopup="true" data-menu-toggle="hover">
 									<a href="javascript:;" class="menu-link menu-toggle">
 										<span class="svg-icon menu-icon">
 											<!--begin::Svg Icon | path:/metronic/theme/html/demo1/dist/assets/media/svg/icons/Design/Bucket.svg-->

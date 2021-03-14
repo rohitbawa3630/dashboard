@@ -40,7 +40,7 @@ class PrescriptionsController extends CI_Controller
 		 $Store_Obj=$this->db->query("SELECT * FROM `stores` WHERE `register_id`= $user_id");
 		$store_array=$Store_Obj->result_array();
 		$store_id=$store_array[0]['id'];
-		$Store_relation_with_prescription=array('store_register_id'=>$user_id,'store_id'=>$store_id,'Prescription_id'=>$PrescriptionId,'after_accepte_status'=>'1');
+		$Store_relation_with_prescription=array('store_register_id'=>$user_id,'store_id'=>$store_id,'Prescription_id'=>$PrescriptionId,'after_accepte_status'=>'2');
 		
 		$this->db->query("update prescriptions set status=2 where id=$PrescriptionId");
 		
@@ -48,13 +48,21 @@ class PrescriptionsController extends CI_Controller
 		{
 			$this->db->query("update prescription_details set status=2 where prescription_id=$PrescriptionId");
 			if($this->db->affected_rows())
-			{ $where_array=array('Prescription_id'=>$PrescriptionId);
-				$query = $this->db->get_where('store_relation_with_prescription',$where_array);
-                 if($query->row()){
-					 $this->db->query("update store_relation_with_prescription set after_accepte_status=1 where prescription_id=$PrescriptionId");
-					 }else{
-						 $this->db->insert('store_relation_with_prescription',$Store_relation_with_prescription);
-						 }
+			{ 
+		        $where_array=array('Prescription_id'=>$PrescriptionId,'store_register_id'=>$user_id);
+				$this->db->select('*');
+				$this->db->from('store_relation_with_prescription');
+				$query = $this->db->where($where_array); 
+				$isexcept=$query->get()->result_id->num_rows;
+			
+                 if($isexcept)
+				 {
+					 $this->db->query("update store_relation_with_prescription set after_accepte_status=2 where prescription_id=$PrescriptionId");
+				 }
+				 else
+				 {
+					$this->db->insert('store_relation_with_prescription',$Store_relation_with_prescription);
+				 }
 				 
 				echo "Prescription Accepted";
 			}
@@ -73,8 +81,8 @@ class PrescriptionsController extends CI_Controller
 			$this->db->query("update prescription_details set status=1 where prescription_id=$PrescriptionId");
 			if($this->db->affected_rows())
 			{
-				$this->db->query("update store_relation_with_prescription set after_accepte_status=0 where prescription_id=$PrescriptionId");
-				echo "Prescription UnExceptedAccepted";
+				$this->db->query("update store_relation_with_prescription set after_accepte_status=1 where prescription_id=$PrescriptionId");
+				echo "Prescription UnExcepted";
 			}
 			else
 			{
@@ -123,8 +131,15 @@ class PrescriptionsController extends CI_Controller
 		{
 			$user_id=0;
 		}
+		//get current staus from store
 		
-		$dataKey=array('data'=>$data,'userid'=>$user_id);
+				$where_array=array('Prescription_id'=>$editid,'store_register_id'=>$user_id);
+				$this->db->select('*');
+				$this->db->from('store_relation_with_prescription');
+				$query = $this->db->where($where_array);
+				$StoreData=$query->get()->result_array();
+                 
+		$dataKey=array('data'=>$data,'userid'=>$user_id,'currentStatus'=>$StoreData[0]['after_accepte_status']);
 		$this->load->view('header.php');
 		$this->load->view('sidebar.php');
 		$this->load->view('ViewSinglePrescriptionForAStore.php',$dataKey);
@@ -136,8 +151,8 @@ class PrescriptionsController extends CI_Controller
 		$PrescriptionId=$_POST['PrescriptionId'];
 		$name=$_POST['name']; //3,4,5
 		$IsThisTrueOrFlaseRightNow=$_POST['IsThisTrueOrFlaseRightNow'];
-		$GetConst=array(3=>inProgess,4=>ready,5=>delevered);
-		
+		$GetConst=array(1=>panding,2=>excepted,3=>inProgess,4=>ready,5=>delevered);
+		echo $IsThisTrueOrFlaseRightNow;
 		if($IsThisTrueOrFlaseRightNow)
 		{
 		    $state=$GetConst[$name];
@@ -146,11 +161,18 @@ class PrescriptionsController extends CI_Controller
 			$this->db->query("update prescription_details set status=$state where prescription_id=$PrescriptionId");
 			$this->db->query("update store_relation_with_prescription set after_accepte_status=$state where Prescription_id=$PrescriptionId");
 			$this->db->trans_complete();	
-			echo "okay";
+			echo $state;
 		}
 		else
 		{
-			
+			$index=$name-1;
+			$state=$GetConst[$index];
+			$this->db->trans_start();
+			$this->db->query("update prescriptions set status=$state where id=$PrescriptionId");
+			$this->db->query("update prescription_details set status=$state where prescription_id=$PrescriptionId");
+			$this->db->query("update store_relation_with_prescription set after_accepte_status=$state where Prescription_id=$PrescriptionId");
+			$this->db->trans_complete();	
+			echo $state.'de';
 		}
 	}
 	

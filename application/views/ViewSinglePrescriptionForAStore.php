@@ -67,17 +67,7 @@ div#menu1 .subtot h3 {
     font-family: Arial !important;font-weight: bold;">Prescription</span>
 	
 		</div>
-		<div class="col-sm-4 order-dec-sec">
-		<!--<span style="width:200px;color: #3F4254;font-size: 14px !important;font-family: Arial !important;margin-left:60px;font-weight: bold;"><span class="">Order Description</span> :<?php echo $select_single_order_query[0]['order_desc'];?></span>-->
-		</div>
-		<div class="col-sm-4">
-	
-	<span style="color: #3F4254;font-size: 14px !important;
-    font-family: Arial !important;margin-left:60px;font-weight: bold;">Date : <?php echo $data['created_at'];?></span>
-	</div>
-	<div class="col-sm-3 text-center">
-	<button id='btn' value='Print' class="btn btn-info printMe" >PRINT THIS ORDER</button>
-	</div>
+		
 	</div>
 	<hr>
           <div class="manage_table_data">
@@ -123,7 +113,7 @@ div#menu1 .subtot h3 {
   <div class="col-3">
    <span class="switch switch-outline switch-icon switch-success">
     <label>
-     <input type="checkbox" class="changeStaus"  name="1"/>
+     <input type="checkbox" class="changeStaus"  id="2" name="2" <?php if($currentStatus>1){ ?> checked <?php } ?> />
      <span></span>
     </label>
    </span>
@@ -134,7 +124,7 @@ div#menu1 .subtot h3 {
   <div class="col-3">
    <span class="switch switch-outline switch-icon switch-warning">
     <label>
-     <input type="checkbox" class="changeStaus"  name="3"/>
+     <input type="checkbox" class="changeStaus"  id="3" name="3" <?php if($currentStatus>2){ ?> checked <?php } ?>/>
      <span></span>
     </label>
    </span>
@@ -145,7 +135,7 @@ div#menu1 .subtot h3 {
   <div class="col-3">
    <span class="switch switch-outline switch-icon switch-danger">
     <label>
-     <input type="checkbox" class="changeStaus"  name="4"/>
+     <input type="checkbox"  class="changeStaus"  id="4"  name="4" <?php if($currentStatus>3){ ?> checked <?php } ?>/>
      <span></span>
     </label>
    </span>
@@ -156,7 +146,7 @@ div#menu1 .subtot h3 {
   <div class="col-3">
    <span class="switch switch-outline switch-icon switch-dark">
     <label>
-     <input type="checkbox" class="changeStaus"  name="5"/>
+     <input type="checkbox"  class="changeStaus"  id="5" name="5" <?php if($currentStatus>4){ ?> checked <?php } ?>/>
      <span></span>
     </label>
    </span>
@@ -174,14 +164,47 @@ div#menu1 .subtot h3 {
   
 </div>
 <script>
-$('.changeStaus').change(function(){
+$(document).ready(function(){
+	
+			function DisableOrNotPositive(currentid,nextid)
+			{
+				if($('#'+currentid).prop("checked")==true)
+				{
+					previous=parseInt(currentid)-1;
+					$('#'+previous).attr("disabled", true);
+					$("#"+nextid).attr("disabled", false);
+				}
+				else
+				{
+					previous=parseInt(currentid)+1;
+					
+					$('#'+nextid).attr("disabled", false);
+					$('#'+previous).attr("disabled", true);
+					//currentid
+					//$("#"+nextid).attr("disabled", true);
+				}
+			}
+			
+			
+	
+	$('.changeStaus').change(function(){
+		
+		 if($(this).attr('id')=='2' && $(this).prop("checked") == false)
+		 {
+			 $('.changeStaus').attr("disabled", true);
+			 $(this).attr("disabled", false);
+		 }
+		
 		name=$(this).attr('name');
 		if($(this).prop("checked") == true)
 			{
+						currentid=$(this).attr('id');
+						nextid=parseInt(currentid)+1;
+						DisableOrNotPositive(currentid,nextid);  // call function
                        $.ajax({
 							url:"https://localhost/dashboard/ChangeStatusByStore",
 							method:"post",
-							data:{'PrescriptionId':<?php echo $data['id'];?> ,'name':name,'IsThisTrueOrFlaseRightNow':true},
+							data:{'PrescriptionId':<?php echo $data['id'];?> ,'name':name,'IsThisTrueOrFlaseRightNow':1},
 							success:function(data)
 							{
 								alert(data);
@@ -192,10 +215,56 @@ $('.changeStaus').change(function(){
 							}
 						});
             }
-            else if($(this).prop("checked") == false){
-                alert("Checkbox is unchecked.");
+            else if($(this).prop("checked") == false)
+			{
+				currentid=$(this).attr('id');
+				nextid=parseInt(currentid)-1;
+				alert(nextid);
+				 DisableOrNotPositive(currentid,nextid); // call function
+               
+				$.ajax({
+							url:"https://localhost/dashboard/ChangeStatusByStore",
+							method:"post",
+							data:{'PrescriptionId':<?php echo $data['id'];?> ,'name':name,'IsThisTrueOrFlaseRightNow':0},
+							success:function(data)
+							{
+								alert(data);
+								
+								
+								
+								
+							}
+						});
             }
+			
+			// change status and validate
+			
+			
 });
+
+	$(".changeStaus").each(function()
+	{                             
+		if($(this).prop("checked") == true)
+		{  /// first unselect
+				 firsetselct=$(this).attr('id');
+				 	 
+		}
+		
+		
+	});
+		for(i=2;i<firsetselct;i++)
+		{
+			$('#'+i).attr("disabled", true);
+		}
+		furtherUnselct=parseInt(firsetselct)+2;
+		
+		for(i=furtherUnselct;i<=5;i++)
+		{
+			$('#'+i).attr("disabled", true);
+		}
+			//DisableOrNot();
+});
+
 
 
 

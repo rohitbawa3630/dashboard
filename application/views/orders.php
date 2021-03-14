@@ -3,7 +3,7 @@
 								<!--begin::Card-->
 								<div class="card card-custom">
 									<div class="card-header flex-wrap border-0 pt-6 pb-0">
-									<h5 class="text-dark font-weight-bold my-1 mr-5">Orders</h5>
+									<h5 class="text-dark font-weight-bold my-1 mr-5">Prescriptions</h5>
 										<div class="card-title">
 											
 										</div>

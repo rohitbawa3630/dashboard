@@ -12,6 +12,11 @@
 	{
 		$user_id=0;
 	}
+	$where_array=array('Prescription_id'=>$editid,'store_register_id'=>$user_id,'after_accepte_status'=>2);
+	$this->db->select('*');
+	$this->db->from('store_relation_with_prescription');
+	$query = $this->db->where($where_array); 
+	$isexcept=$query->get()->result_id->num_rows;
  ?>	
 
 <link href="<?php base_url()?>//assets/css/demo1/style.css">
@@ -77,17 +82,7 @@ div#menu1 .subtot h3 {
     font-family: Arial !important;font-weight: bold;">Prescription</span>
 	
 		</div>
-		<div class="col-sm-4 order-dec-sec">
-		<!--<span style="width:200px;color: #3F4254;font-size: 14px !important;font-family: Arial !important;margin-left:60px;font-weight: bold;"><span class="">Order Description</span> :<?php echo $select_single_order_query[0]['order_desc'];?></span>-->
-		</div>
-		<div class="col-sm-4">
 	
-	<span style="color: #3F4254;font-size: 14px !important;
-    font-family: Arial !important;margin-left:60px;font-weight: bold;">Prescription Date : <?php echo $data['created_at'];?></span>
-	</div>
-	<div class="col-sm-3 text-center">
-	<button id='btn' value='Print' class="btn btn-info printMe" >PRINT THIS ORDER</button>
-	</div>
 	</div>
 	<hr>
           <div class="manage_table_data">
@@ -127,7 +122,7 @@ div#menu1 .subtot h3 {
 <div class="col-sm-7">
 <!--<div class="save_btn btn_sec2" ><button  data-toggle="modal" data-target="#ordermodal" type="button" class="btn btn-default">MORE DETAILS</button></div>-->
 
-<div class=" unexdivbtn_sec2 " style="margin-top: 10px !important;"><button  data-toggle="modal" data-target="#approvemodal" type="button" class="save_btn  btn btn-info">Except</button></div>
+<div class=" unexdivbtn_sec2 " style="margin-top: 10px !important;"><button  data-toggle="modal" data-target="#approvemodal" type="button" class="save_btn  btn <?php if($isexcept){ echo "btn-danger Excepted "; }else{ echo "btn-info UnExcepted"; } ?>"><?php if($isexcept){echo "UnExcpted"; }else{ echo "Except";} ?> </button></div>
 
 
  
@@ -151,7 +146,7 @@ $('.save_btn').click(function(){
   if($(this).hasClass('Excepted'))
   {
 	  $(this).removeClass('Excepted');
-	   $(this).addClass('UnExcepted');
+	   $(this).addClass('');
 	  $.ajax({
 		url:"https://localhost/dashboard/UnExceptPrescription",
 		method:"post",
@@ -159,7 +154,7 @@ $('.save_btn').click(function(){
 		success:function(data)
 		{
 			alert(data);
-			$('.save_btn').html('Accept');
+			$('.save_btn').html('Except');
 			$('.save_btn').removeClass('btn-danger');
 			$('.save_btn').addClass('btn-info');
 			
@@ -180,7 +175,7 @@ $('.save_btn').click(function(){
 		success:function(data)
 		{
 			alert(data);
-			$('.save_btn').html('UnAccept');
+			$('.save_btn').html('UnAccept'); 
 			$('.save_btn').removeClass('btn-info');
 			$('.save_btn').addClass('btn-danger');
 		}
