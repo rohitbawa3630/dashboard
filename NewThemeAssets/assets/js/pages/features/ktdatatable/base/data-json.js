@@ -3106,7 +3106,7 @@ var KTDatatableJsonRemoteDemo = function() {
             // datasource definition
             data: {
                 type: 'remote',
-                source:"https://localhost/dashboard/GetNewPrescriptions",
+                source:"http://15.206.100.247/dashboard/GetNewPrescriptions",
                 pageSize: 10,
             },
 
@@ -3288,7 +3288,7 @@ var KTDatatableJsonRemoteDemo = function() {
             // datasource definition
             data: {
                 type: 'remote',
-                source:"https://localhost/dashboard/ViewExceptPrescription",
+                source:"http://15.206.100.247/dashboard/ViewExceptPrescription",
                 pageSize: 10,
             },
 
