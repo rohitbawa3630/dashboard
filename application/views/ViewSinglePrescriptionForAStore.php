@@ -202,7 +202,7 @@ $(document).ready(function(){
 						nextid=parseInt(currentid)+1;
 						DisableOrNotPositive(currentid,nextid);  // call function
                        $.ajax({
-							url:"https://localhost/dashboard/ChangeStatusByStore",
+							url:"/dashboard/ChangeStatusByStore",
 							method:"post",
 							data:{'PrescriptionId':<?php echo $data['id'];?> ,'name':name,'IsThisTrueOrFlaseRightNow':1},
 							success:function(data)
@@ -223,7 +223,7 @@ $(document).ready(function(){
 				 DisableOrNotPositive(currentid,nextid); // call function
                
 				$.ajax({
-							url:"https://localhost/dashboard/ChangeStatusByStore",
+							url:"/dashboard/ChangeStatusByStore",
 							method:"post",
 							data:{'PrescriptionId':<?php echo $data['id'];?> ,'name':name,'IsThisTrueOrFlaseRightNow':0},
 							success:function(data)

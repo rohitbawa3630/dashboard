@@ -148,7 +148,7 @@ $('.save_btn').click(function(){
 	  $(this).removeClass('Excepted');
 	   $(this).addClass('');
 	  $.ajax({
-		url:"https://localhost/dashboard/UnExceptPrescription",
+		url:"/dashboard/UnExceptPrescription",
 		method:"post",
 		data:{'PrescriptionId':<?php echo $_GET['id'];?> ,'user_id':<?php echo $user_id ;?>},
 		success:function(data)
@@ -169,7 +169,7 @@ $('.save_btn').click(function(){
 	   $(this).addClass('Excepted');
   
 	$.ajax({
-		url:"https://localhost/dashboard/ExceptPrescription",
+		url:"/dashboard/ExceptPrescription",
 		method:"post",
 		data:{'PrescriptionId':<?php echo $_GET['id'];?> ,'user_id':<?php echo $user_id ;?>},
 		success:function(data)
