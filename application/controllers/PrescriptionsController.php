@@ -162,7 +162,7 @@ class PrescriptionsController extends CI_Controller
 			$this->db->query("update store_relation_with_prescription set after_accepte_status=$state where Prescription_id=$PrescriptionId");
 			$this->db->trans_complete();	
 			
-			echo $this->db->last_query();;
+			
 		}
 		else
 		{
@@ -173,7 +173,7 @@ class PrescriptionsController extends CI_Controller
 			$this->db->query("update prescription_details set status=$state where prescription_id=$PrescriptionId");
 			$this->db->query("update store_relation_with_prescription set after_accepte_status=$state where Prescription_id=$PrescriptionId");
 			$this->db->trans_complete();	
-		   echo $this->db->last_query();;
+		   
 		}
 	}
 	
