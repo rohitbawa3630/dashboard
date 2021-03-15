@@ -236,6 +236,15 @@ $(document).ready(function(){
 		{
 			 $('#2').attr("disabled", false);
 		}
+		
+		if($('#2').prop("checked") == false)
+		{ 
+			   $('#4').attr("disabled", true);
+		}
+		else
+		{
+			 $('#4').attr("disabled", false);
+		}
 			
 });
 
