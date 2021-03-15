@@ -152,7 +152,7 @@ class PrescriptionsController extends CI_Controller
 		$name=$_POST['name']; //3,4,5
 		$IsThisTrueOrFlaseRightNow=$_POST['IsThisTrueOrFlaseRightNow'];
 		$GetConst=array(1=>panding,2=>excepted,3=>inProgess,4=>ready,5=>delevered);
-		echo $IsThisTrueOrFlaseRightNow;
+		
 		if($IsThisTrueOrFlaseRightNow)
 		{
 		    $state=$GetConst[$name];
