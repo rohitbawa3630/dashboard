@@ -191,7 +191,7 @@ $(document).ready(function(){
 							data:{'PrescriptionId':<?php echo $data['id'];?> ,'name':name,'IsThisTrueOrFlaseRightNow':1},
 							success:function(data)
 							{
-							//	alert(data);
+							   alert(data);
 								
 								
 								
@@ -212,7 +212,7 @@ $(document).ready(function(){
 							data:{'PrescriptionId':<?php echo $data['id'];?> ,'name':name,'IsThisTrueOrFlaseRightNow':0},
 							success:function(data)
 							{
-								//alert(data);
+								alert(data);
 								
 								
 								
