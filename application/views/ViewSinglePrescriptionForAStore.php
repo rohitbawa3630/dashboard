@@ -121,17 +121,7 @@ div#menu1 .subtot h3 {
    </span>
   </div>
  </div>
- <div class="form-group row">
-  <label class="col-3 col-form-label">Ordred</label>
-  <div class="col-3">
-   <span class="switch switch-outline switch-icon switch-warning">
-    <label>
-     <input type="checkbox" class="changeStaus"  id="3" name="3" <?php if($currentStatus>2){ ?> checked <?php } ?>/>
-     <span></span>
-    </label>
-   </span>
-  </div>
- </div>
+
  <div class="form-group row">
   <label class="col-3 col-form-label">Delevered</label>
   <div class="col-3">
@@ -164,13 +154,13 @@ $(document).ready(function(){
 			{
 				if($('#'+currentid).prop("checked")==true)
 				{
-					previous=parseInt(currentid)-1;
+					previous=parseInt(currentid)-2;
 					$('#'+previous).attr("disabled", true);
 					$("#"+nextid).attr("disabled", false);
 				}
 				else
 				{
-					previous=parseInt(currentid)+1;
+					previous=parseInt(currentid)+2;
 					
 					$('#'+nextid).attr("disabled", false);
 					$('#'+previous).attr("disabled", true);
@@ -193,7 +183,7 @@ $(document).ready(function(){
 		if($(this).prop("checked") == true)
 			{
 						currentid=$(this).attr('id');
-						nextid=parseInt(currentid)+1;
+						nextid=parseInt(currentid)+2;
 						DisableOrNotPositive(currentid,nextid);  // call function
                        $.ajax({
 							url:"/dashboard/ChangeStatusByStore",
@@ -212,7 +202,7 @@ $(document).ready(function(){
             else if($(this).prop("checked") == false)
 			{
 				currentid=$(this).attr('id');
-				nextid=parseInt(currentid)-1;
+				nextid=parseInt(currentid)-2;
 			
 				 DisableOrNotPositive(currentid,nextid); // call function
                
@@ -236,7 +226,7 @@ $(document).ready(function(){
 			
 });
 
-	$(".changeStaus").each(function()
+	/* $(".changeStaus").each(function()
 	{                             
 		if($(this).prop("checked") == true)
 		{  /// first unselect
@@ -255,7 +245,7 @@ $(document).ready(function(){
 		for(i=furtherUnselct;i<=4;i++)
 		{
 			$('#'+i).attr("disabled", true);
-		}
+		} */
 			//DisableOrNot();
 });
 
