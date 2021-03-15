@@ -226,27 +226,17 @@ $(document).ready(function(){
 			
 });
 
-	$(".changeStaus").each(function()
-	{                             
-		if($(this).prop("checked") == true)
-		{  /// first unselect
-				 firsetselct=$(this).attr('id');
-				 	 
+	
+			
+		if($('#2').prop("checked") == true)
+		{ 
+			   $('#1').attr("disabled", true);
 		}
-		
-		
-	});
-		for(i=2;i<firsetselct;i++)
+		else
 		{
-			$('#'+i).attr("disabled", true);
+			 $('#1').attr("disabled", false);
 		}
-		furtherUnselct=parseInt(firsetselct)+2;
-		
-		for(i=furtherUnselct;i<=4;i++)
-		{
-			$('#'+i).attr("disabled", true);
-		} 
-			//DisableOrNot();
+			
 });
 
 
