@@ -82,7 +82,7 @@ class PrescriptionsController extends CI_Controller
 			if($this->db->affected_rows())
 			{
 				$this->db->query("update store_relation_with_prescription set after_accepte_status=1 where prescription_id=$PrescriptionId");
-				echo "Prescription UnExcepted";
+				echo "Prescription UnAccepted";
 			}
 			else
 			{

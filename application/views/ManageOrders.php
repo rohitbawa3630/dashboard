@@ -154,7 +154,7 @@ $('.save_btn').click(function(){
 		success:function(data)
 		{
 			alert(data);
-			$('.save_btn').html('Except');
+			$('.save_btn').html('Accept');
 			$('.save_btn').removeClass('btn-danger');
 			$('.save_btn').addClass('btn-info');
 			

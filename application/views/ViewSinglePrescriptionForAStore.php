@@ -107,9 +107,11 @@ div#menu1 .subtot h3 {
 <div class="col-sm-7">
 <!--<div class="save_btn btn_sec2" ><button  data-toggle="modal" data-target="#ordermodal" type="button" class="btn btn-default">MORE DETAILS</button></div>-->
 
-
+<?php if($data['id']=='5')
+{
+	?>
 <div class="form-group row">
-  <label class="col-3 col-form-label">Accept</label>
+  <label class="col-3 col-form-label">InProgress</label>
   <div class="col-3">
    <span class="switch switch-outline switch-icon switch-success">
     <label>
@@ -120,7 +122,7 @@ div#menu1 .subtot h3 {
   </div>
  </div>
  <div class="form-group row">
-  <label class="col-3 col-form-label">In Progress</label>
+  <label class="col-3 col-form-label">Ordred</label>
   <div class="col-3">
    <span class="switch switch-outline switch-icon switch-warning">
     <label>
@@ -131,7 +133,7 @@ div#menu1 .subtot h3 {
   </div>
  </div>
  <div class="form-group row">
-  <label class="col-3 col-form-label">Ready</label>
+  <label class="col-3 col-form-label">Delevered</label>
   <div class="col-3">
    <span class="switch switch-outline switch-icon switch-danger">
     <label>
@@ -141,19 +143,11 @@ div#menu1 .subtot h3 {
    </span>
   </div>
  </div>
- <div class="form-group row">
-  <label class="col-3 col-form-label">Delevered</label>
-  <div class="col-3">
-   <span class="switch switch-outline switch-icon switch-dark">
-    <label>
-     <input type="checkbox"  class="changeStaus"  id="5" name="5" <?php if($currentStatus>4){ ?> checked <?php } ?>/>
-     <span></span>
-    </label>
-   </span>
-  </div>
- </div>
  
  
+<?php }else{
+	echo "This prescription is canceled by user";
+} ?>
 </div>
 </div>
 
@@ -219,7 +213,7 @@ $(document).ready(function(){
 			{
 				currentid=$(this).attr('id');
 				nextid=parseInt(currentid)-1;
-				alert(nextid);
+			
 				 DisableOrNotPositive(currentid,nextid); // call function
                
 				$.ajax({
@@ -258,7 +252,7 @@ $(document).ready(function(){
 		}
 		furtherUnselct=parseInt(firsetselct)+2;
 		
-		for(i=furtherUnselct;i<=5;i++)
+		for(i=furtherUnselct;i<=4;i++)
 		{
 			$('#'+i).attr("disabled", true);
 		}
