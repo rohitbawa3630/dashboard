@@ -107,7 +107,7 @@ div#menu1 .subtot h3 {
 <div class="col-sm-7">
 <!--<div class="save_btn btn_sec2" ><button  data-toggle="modal" data-target="#ordermodal" type="button" class="btn btn-default">MORE DETAILS</button></div>-->
 
-<?php if($data['id']=='5')
+<?php if($data['id']<5)
 {
 	?>
 <div class="form-group row">
