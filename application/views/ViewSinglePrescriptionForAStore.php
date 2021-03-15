@@ -188,7 +188,7 @@ $(document).ready(function(){
                        $.ajax({
 							url:"/dashboard/ChangeStatusByStore",
 							method:"post",
-							data:{'PrescriptionId':<?php echo $data['id'];?> ,'name':name,'IsThisTrueOrFlaseRightNow':1},
+							data:{'PrescriptionId':<?php echo $pid;?> ,'name':name,'IsThisTrueOrFlaseRightNow':1},
 							success:function(data)
 							{
 							   alert(data);
@@ -209,7 +209,7 @@ $(document).ready(function(){
 				$.ajax({
 							url:"/dashboard/ChangeStatusByStore",
 							method:"post",
-							data:{'PrescriptionId':<?php echo $data['id'];?> ,'name':name,'IsThisTrueOrFlaseRightNow':0},
+							data:{'PrescriptionId':<?php echo $pid;?> ,'name':name,'IsThisTrueOrFlaseRightNow':0},
 							success:function(data)
 							{
 								alert(data);

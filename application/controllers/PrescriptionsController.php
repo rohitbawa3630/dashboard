@@ -139,7 +139,7 @@ class PrescriptionsController extends CI_Controller
 				$query = $this->db->where($where_array);
 				$StoreData=$query->get()->result_array();
                  
-		$dataKey=array('data'=>$data,'userid'=>$user_id,'currentStatus'=>$StoreData[0]['after_accepte_status']);
+		$dataKey=array('data'=>$data,'userid'=>$user_id,'currentStatus'=>$StoreData[0]['after_accepte_status'],'pid'=>$data['prescription_id']);
 		$this->load->view('header.php');
 		$this->load->view('sidebar.php');
 		$this->load->view('ViewSinglePrescriptionForAStore.php',$dataKey);
