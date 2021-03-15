@@ -228,13 +228,13 @@ $(document).ready(function(){
 
 	
 			
-		if($('#2').prop("checked") == true)
+		if($('#4').prop("checked") == true)
 		{ 
-			   $('#1').attr("disabled", true);
+			   $('#2').attr("disabled", true);
 		}
 		else
 		{
-			 $('#1').attr("disabled", false);
+			 $('#2').attr("disabled", false);
 		}
 			
 });
