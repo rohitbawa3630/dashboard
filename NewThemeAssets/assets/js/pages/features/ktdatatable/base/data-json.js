@@ -3155,7 +3155,7 @@ var KTDatatableJsonRemoteDemo = function() {
 				title: 'Image',
 				template: function(row)
 				{
-					return  "<img src='/images/docs/"+row.image_file+"' style='width:50px;height:50px'>"
+					return  "<img src='http://15.206.100.247/helloapp/public/images/docs/"+row.image_file+"' style='width:50px;height:50px'>"
 				}
 			},
 			     
@@ -3337,7 +3337,7 @@ var KTDatatableJsonRemoteDemo = function() {
 				title: 'Image',
 				template: function(row)
 				{
-					return  "<img src='/images/docs/"+row.image_file+"' style='width:50px;height:50px'>"
+					return  "<img src='http://15.206.100.247/helloapp/public/images/docs/"+row.image_file+"' style='width:50px;height:50px'>"
 				}
 			},
 			     

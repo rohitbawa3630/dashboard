@@ -105,7 +105,7 @@ div#menu1 .subtot h3 {
    <tr>
 		<td ><?php echo $data['code']; ?></td>
 		<td><?php echo $data['prescription']; ?></td>
-		<td><img style="width:30px;height:30px" src="<?php echo $data['image_file']; ?>" ></td>
+		<td><img style="width:30px;height:30px" src="http://15.206.100.247/helloapp/public/images/docs/<?php echo $data['image_file']; ?>" ></td>
 		<td><?php echo $data['group_name']; ?></td>
 		<td><?php echo $data['price']; ?></td>
   </tr>      
