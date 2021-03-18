@@ -1,7 +1,7 @@
 <?php
 	error_reporting(0); 
 	$editid=$_GET['id'];
-	$obj=$this->db->query("select * from  prescriptions inner join prescription_details on prescriptions.id=prescription_details.prescription_id where prescriptions.id=$editid");
+	$obj=$this->db->query("select * from  prescriptions  where id=$editid");
 	$dataArray=$obj->result_array();
 	$data=$dataArray[0];
 	if(isset($_SESSION['status']))
