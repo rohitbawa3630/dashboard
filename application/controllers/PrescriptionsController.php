@@ -46,9 +46,9 @@ class PrescriptionsController extends CI_Controller
 		
 		if($this->db->affected_rows())
 		{
-			$this->db->query("update prescription_details set status=2 where prescription_id=$PrescriptionId");
+			/* $this->db->query("update prescription_details set status=2 where prescription_id=$PrescriptionId");
 			if($this->db->affected_rows())
-			{ 
+			{  */
 		        $where_array=array('Prescription_id'=>$PrescriptionId,'store_register_id'=>$user_id);
 				$this->db->select('*');
 				$this->db->from('store_relation_with_prescription');
@@ -65,12 +65,16 @@ class PrescriptionsController extends CI_Controller
 				 }
 				 
 				echo "Prescription Accepted";
-			}
+			/* }
 			else
 			{
 				echo "Oprtaion Failed";
-			} 
+			}  */
 		}
+		else
+			{
+				echo "Oprtaion Failed";
+			}
 	}
 	public function UnExceptPrescription()
 	{
@@ -78,17 +82,21 @@ class PrescriptionsController extends CI_Controller
 		$this->db->query("update prescriptions set status=1 where id=$PrescriptionId");
 		if($this->db->affected_rows())
 		{
-			$this->db->query("update prescription_details set status=1 where prescription_id=$PrescriptionId");
+			/* $this->db->query("update prescription_details set status=1 where prescription_id=$PrescriptionId");
 			if($this->db->affected_rows())
-			{
+			{ */
 				$this->db->query("update store_relation_with_prescription set after_accepte_status=1 where prescription_id=$PrescriptionId");
 				echo "Prescription UnAccepted";
-			}
+			/* }
 			else
 			{
 				echo "Oprtaion Failed";
-			}
+			} */
 		}
+		else
+			{
+				echo "Oprtaion Failed";
+			}
 	}
 	public function ViewExceptPrescription()
 	{
@@ -119,7 +127,7 @@ class PrescriptionsController extends CI_Controller
 	public function ViewSinglePrescriptionForAStore()
 	{
 		$editid=$this->uri->segment('2');
-		$obj=$this->db->query("select * from  prescriptions inner join prescription_details on prescriptions.id=prescription_details.prescription_id where prescriptions.id=$editid");
+		$obj=$this->db->query("select * from  prescriptions  where id=$editid");
 		$dataArray=$obj->result_array();
 		$data=$dataArray[0];
 		
@@ -139,7 +147,7 @@ class PrescriptionsController extends CI_Controller
 				$query = $this->db->where($where_array);
 				$StoreData=$query->get()->result_array();
                  
-		$dataKey=array('data'=>$data,'userid'=>$user_id,'currentStatus'=>$StoreData[0]['after_accepte_status'],'pid'=>$data['prescription_id']);
+		$dataKey=array('data'=>$data,'userid'=>$user_id,'currentStatus'=>$StoreData[0]['after_accepte_status'],'pid'=>$data['id']);
 		$this->load->view('header.php');
 		$this->load->view('sidebar.php');
 		$this->load->view('ViewSinglePrescriptionForAStore.php',$dataKey);
@@ -158,7 +166,7 @@ class PrescriptionsController extends CI_Controller
 		    $state=$GetConst[$name];
 			$this->db->trans_start();
 			$this->db->query("update prescriptions set status=$state where id=$PrescriptionId");
-			$this->db->query("update prescription_details set status=$state where prescription_id=$PrescriptionId");
+			//$this->db->query("update prescription_details set status=$state where prescription_id=$PrescriptionId");
 			$this->db->query("update store_relation_with_prescription set after_accepte_status=$state where Prescription_id=$PrescriptionId");
 			$this->db->trans_complete();	
 			
@@ -170,7 +178,7 @@ class PrescriptionsController extends CI_Controller
 			$state=$GetConst[$index];
 			$this->db->trans_start();
 			$this->db->query("update prescriptions set status=$state where id=$PrescriptionId");
-			$this->db->query("update prescription_details set status=$state where prescription_id=$PrescriptionId");
+			//$this->db->query("update prescription_details set status=$state where prescription_id=$PrescriptionId");
 			$this->db->query("update store_relation_with_prescription set after_accepte_status=$state where Prescription_id=$PrescriptionId");
 			$this->db->trans_complete();	
 		   

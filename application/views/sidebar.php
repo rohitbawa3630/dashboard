@@ -73,7 +73,7 @@ session_start();
 													<i class="menu-bullet menu-bullet-dot">
 														<span></span>
 													</i>
-													<span class="menu-text">Excepted</span>
+													<span class="menu-text">Accepted</span>
 												</a>
 											</li>
 										</ul>
