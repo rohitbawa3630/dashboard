@@ -12,9 +12,9 @@
 	{
 		$user_id=0;
 	}
-	$where_array=array('Prescription_id'=>$editid,'store_register_id'=>$user_id,'after_accepte_status'=>2);
+	$where_array=array('Prescription_id'=>$editid,'store_id'=>$user_id,'status'=>2);
 	$this->db->select('*');
-	$this->db->from('store_relation_with_prescription');
+	$this->db->from('prescription_details');
 	$query = $this->db->where($where_array); 
 	$isexcept=$query->get()->result_id->num_rows;
  ?>	
@@ -122,31 +122,51 @@ div#menu1 .subtot h3 {
 <div class="col-sm-7">
 <!--<div class="save_btn btn_sec2" ><button  data-toggle="modal" data-target="#ordermodal" type="button" class="btn btn-default">MORE DETAILS</button></div>-->
 
-<div class=" unexdivbtn_sec2 " style="margin-top: 10px !important;"><button  data-toggle="modal" data-target="#approvemodal" type="button" class="save_btn  btn <?php if($isexcept){ echo "btn-danger Excepted "; }else{ echo "btn-info UnExcepted"; } ?>"><?php if($isexcept){echo "UnExcpted"; }else{ echo "Except";} ?> </button></div>
+<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
 
-
- 
- 
 </div>
-</div>
-
-
-
-
-
-
 </div>
 
 </div>
 
+</div>
+<!-------------------------------------------------------Modal------------------------------------------------->
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          
+        </div>
+        <div class="modal-body">
+          <p>Enter Price</p>
+		  <input value="0" required type="number" id="price" class="form-control">
+        </div>
+        <div class="modal-footer">
+       <div class=" unexdivbtn_sec2 " style="margin-top: 10px !important;"><button  data-toggle="modal" data-target="#approvemodal" type="button" class="save_btn  btn <?php if($isexcept){ echo "btn-danger Excepted "; }else{ echo "btn-info UnAccept"; } ?>"><?php if($isexcept){echo "UNAccept"; }else{ echo "Accept";} ?> </button></div>
+	   
+	   <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
   
 </div>
+<!--------------------------------------------------------------------------------------------------------------->
+  
+</div>
+
+
+
 <script>
 $('.save_btn').click(function(){
   if($(this).hasClass('Excepted'))
   {
 	  $(this).removeClass('Excepted');
-	   $(this).addClass('');
+	   $(this).addClass('UnAccept');
 	  $.ajax({
 		url:"/dashboard/UnExceptPrescription",
 		method:"post",
@@ -161,17 +181,19 @@ $('.save_btn').click(function(){
 			
 			
 		}
-		});
+		}); 
   }
   else
   {
-	  $(this).removeClass('UnExcepted');
-	   $(this).addClass('Excepted');
+	 price=$('#price').val();
+
+	  $('.save_btn').removeClass('UnAccept');
+	   $('.save_btn').addClass('Excepted');
   
-	$.ajax({
+	 $.ajax({
 		url:"/dashboard/ExceptPrescription",
 		method:"post",
-		data:{'PrescriptionId':<?php echo $_GET['id'];?> ,'user_id':<?php echo $user_id ;?>},
+		data:{'PrescriptionId':<?php echo $_GET['id'];?> ,'user_id':<?php echo $user_id ;?>,'price':price},
 		success:function(data)
 		{
 			alert(data);
@@ -179,7 +201,7 @@ $('.save_btn').click(function(){
 			$('.save_btn').removeClass('btn-info');
 			$('.save_btn').addClass('btn-danger');
 		}
-	});
+	}); 
   }
 });
 
