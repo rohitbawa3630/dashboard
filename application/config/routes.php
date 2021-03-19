@@ -380,6 +380,7 @@ $route['ViewExceptPrescription']="PrescriptionsController/ViewExceptPrescription
 $route['ExceptedPrescriptions']="PrescriptionsController/ExceptedPrescriptions";
 $route['ViewSinglePrescriptionForAStore/:num']="PrescriptionsController/ViewSinglePrescriptionForAStore";
 $route['ChangeStatusByStore']="PrescriptionsController/ChangeStatusByStore";
+$route['downloadPrescription']="PrescriptionsController/downloadPrescription";
 $route['404_override'] = '';     
 $route['translate_uri_dashes'] = FALSE;
 

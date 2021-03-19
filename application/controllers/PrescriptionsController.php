@@ -187,6 +187,30 @@ class PrescriptionsController extends CI_Controller
 		}
 	}
 	
+	public function downloadPrescription()
+	{
+		$fp = fopen('http://15.206.100.247/helloapp/public/images/docs/1616079694.png', 'w'); 
+		  
+		// Loop through file pointer and a line 
+		foreach ($list as $fields) { 
+			fputcsv($fp, $fields); 
+		} 
+		  
+		fclose($fp);      
+         $url = "http://15.206.100.247/helloapp/public/images/docs/1616079694.png"; 	
+        $file_name = basename($url);  
+		$info = pathinfo($file_name); 
+        if ($info["extension"] == "csv") 
+		{ 
+			
+			header("Content-Description: File Transfer");  
+			header("Content-Type: application/octet-stream");  
+			header( 
+			"Content-Disposition: attachment; filename=\""
+			. $file_name . "\"");   
+			readfile ($url); 
+		}  		
+	}
 	public function testigMethod()
 	{ 
 	    
