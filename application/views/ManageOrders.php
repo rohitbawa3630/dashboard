@@ -200,6 +200,7 @@ $('.save_btn').click(function(){
 			$('.save_btn').html('UnAccept'); 
 			$('.save_btn').removeClass('btn-info');
 			$('.save_btn').addClass('btn-danger');
+			window.location="Prescriptions";
 		}
 	}); 
   }
