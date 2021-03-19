@@ -159,7 +159,7 @@ class PrescriptionsController extends CI_Controller
 		$PrescriptionId=$_POST['PrescriptionId'];
 		$name=$_POST['name']; //3,4,5
 		$IsThisTrueOrFlaseRightNow=$_POST['IsThisTrueOrFlaseRightNow'];
-		$GetConst=array(1=>panding,2=>excepted,3=>inProgess,4=>ready,5=>delevered);
+		$GetConst=array(1=>panding,2=>Accepted,3=>inProgess,4=>Delevered);
 		
 		if($IsThisTrueOrFlaseRightNow)
 		{
@@ -170,7 +170,7 @@ class PrescriptionsController extends CI_Controller
 			$this->db->query("update prescription_details set status=$state where prescription_id=$PrescriptionId");
 			//$this->db->query("update store_relation_with_prescription set after_accepte_status=$state where Prescription_id=$PrescriptionId");
 			$this->db->trans_complete();	
-			
+			Echo "Status Changed Successfully";
 			
 		}
 		else
@@ -183,7 +183,7 @@ class PrescriptionsController extends CI_Controller
 			$this->db->query("update prescription_details set status=$state where prescription_id=$PrescriptionId");
 			//$this->db->query("update store_relation_with_prescription set after_accepte_status=$state where Prescription_id=$PrescriptionId");
 			$this->db->trans_complete();	
-		   
+		   Echo "Status Changed Successfully";
 		}
 	}
 	

@@ -122,7 +122,7 @@ div#menu1 .subtot h3 {
 <div class="col-sm-7">
 <!--<div class="save_btn btn_sec2" ><button  data-toggle="modal" data-target="#ordermodal" type="button" class="btn btn-default">MORE DETAILS</button></div>-->
 
-<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Open Modal</button>
+<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Accept</button>
 
 </div>
 </div>
