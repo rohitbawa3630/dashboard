@@ -191,10 +191,10 @@ $('.save_btn').click(function(){
   }
   else
   {
-	 $price=$('#price').val();
-	 $bin=$('#bin').val();
-	 $group=$('#group').val();
-	 $prescriptionname=$('#prescriptionname').val();
+	 price=$('#price').val();
+	 bin=$('#bin').val();
+	 group=$('#group').val();
+	 prescriptionname=$('#prescriptionname').val();
 
 	  $('.save_btn').removeClass('UnAccept');
 	   $('.save_btn').addClass('Excepted');
