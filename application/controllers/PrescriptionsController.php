@@ -58,7 +58,7 @@ class PrescriptionsController extends CI_Controller
 			   $isexcept=$obj->num_rows();
                  if($isexcept)  
 				 {  
-					 $this->db->query("update prescription_details set status=2,price=$price,bin=$bin,group_name=$group,prescription='$prescriptionname' where prescription_id=$PrescriptionId");
+					 $this->db->query("update prescription_details set status='2',price='$price',bin='$bin',group_name='$group',prescription='$prescriptionname' where prescription_id='$PrescriptionId'");
 				 }
 				 else
 				 { 
