@@ -58,7 +58,7 @@ class PrescriptionsController extends CI_Controller
 			   $isexcept=$obj->num_rows();
                  if($isexcept)  
 				 {  
-					 $this->db->query("update prescription_details set status=2 where prescription_id=$PrescriptionId");
+					 $this->db->query("update prescription_details set status=2,price=$price,bin=$bin,group_name=$group,prescription='$prescriptionname' where prescription_id=$PrescriptionId");
 				 }
 				 else
 				 { 
@@ -104,7 +104,7 @@ class PrescriptionsController extends CI_Controller
 		  $Store_Obj=$this->db->query("SELECT * FROM `stores` WHERE `register_id`= $store_register_id");
 		$store_array=$Store_Obj->result_array();
 		$store_id=$store_array[0]['id'];
-		 $ObjForPrescr=$this->db->query("select prescription_id from prescription_details where store_id = $store_id  && status>=2");
+		 $ObjForPrescr=$this->db->query("select prescription_id from prescription_details where store_id = $store_id  && status>=2 order by id DESC");
 		 $ArrayForPrescr=$ObjForPrescr->result_array();
 		
 		 foreach($ArrayForPrescr as $value)
