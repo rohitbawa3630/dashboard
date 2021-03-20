@@ -55,7 +55,7 @@ class PrescriptionsController extends CI_Controller
                  if($isexcept)  
 				 {  
 					 $this->db->query("update prescription_details set status=2 where prescription_id=$PrescriptionId");
-				  }
+				 }
 				 else
 				 { 
 					$this->db->insert('prescription_details',$Store_relation_with_prescription);
@@ -166,8 +166,8 @@ class PrescriptionsController extends CI_Controller
 		    $state=$GetConst[$name];
 		
 			$this->db->trans_start();
-			$this->db->query("update prescriptions set status=$state where id=$PrescriptionId");
-			$this->db->query("update prescription_details set status=$state where prescription_id=$PrescriptionId");
+			$this->db->query("update prescriptions set status='$state' where id=$PrescriptionId");
+			$this->db->query("update prescription_details set status='$state' where prescription_id=$PrescriptionId");
 			//$this->db->query("update store_relation_with_prescription set after_accepte_status=$state where Prescription_id=$PrescriptionId");
 			$this->db->trans_complete();	
 			Echo "Status Changed Successfully";
@@ -200,7 +200,7 @@ class PrescriptionsController extends CI_Controller
          $url = "http://15.206.100.247/helloapp/public/images/docs/1616079694.png"; 	
         $file_name = basename($url);  
 		$info = pathinfo($file_name); 
-        if ($info["extension"] == "csv") 
+        if ($info["extension"] == "png") 
 		{ 
 			
 			header("Content-Description: File Transfer");  
