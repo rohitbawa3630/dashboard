@@ -39,11 +39,15 @@ class PrescriptionsController extends CI_Controller
 		
 		 $user_id=$_POST['user_id'];
 		$price=$_POST['price'];
+		$bin=$_POST['bin'];
+		$group=$_POST['group'];
+		$prescriptionname=$_POST['prescriptionname'];
+		
 		 $Store_Obj=$this->db->query("SELECT * FROM `stores` WHERE `register_id`= $user_id");
 		$store_array=$Store_Obj->result_array();
 		$store_id=$store_array[0]['id'];
 		
-		 $Store_relation_with_prescription=array('prescription_id'=>$PrescriptionId,'store_id'=>$store_id,'price'=>$price,'status'=>'2');
+		 $Store_relation_with_prescription=array('prescription_id'=>$PrescriptionId,'store_id'=>$store_id,'price'=>$price,'status'=>'2','bin'=>$bin,'group_name'=>$group,'prescription'=>$prescriptionname);
 		
 		 $this->db->query("update prescriptions set status=2 where id=$PrescriptionId");
 		
@@ -170,7 +174,7 @@ class PrescriptionsController extends CI_Controller
 			$this->db->query("update prescription_details set status='$state' where prescription_id=$PrescriptionId");
 			//$this->db->query("update store_relation_with_prescription set after_accepte_status=$state where Prescription_id=$PrescriptionId");
 			$this->db->trans_complete();	
-			Echo $state;
+			Echo "Status Changed";
 			
 		}
 		else
@@ -183,7 +187,7 @@ class PrescriptionsController extends CI_Controller
 			$this->db->query("update prescription_details set status='$state' where prescription_id=$PrescriptionId");
 			//$this->db->query("update store_relation_with_prescription set after_accepte_status=$state where Prescription_id=$PrescriptionId");
 			$this->db->trans_complete();	
-		   Echo $state;
+		   Echo "Status Changed";
 		}
 	}
 	

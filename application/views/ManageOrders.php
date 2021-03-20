@@ -138,11 +138,17 @@ div#menu1 .subtot h3 {
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          
+         
         </div>
         <div class="modal-body">
           <p>Enter Price</p>
 		  <input value="0" required type="number" id="price" class="form-control">
+		   <p>Enter Group</p>
+		  <input value="" required type="number" id="group" class="form-control">
+		   <p>Enter Prescription Name</p>
+		  <input value="" required type="number" id="prescriptionname" class="form-control">
+		   <p>Enter Bin</p>
+		  <input value="" required type="number" id="bin" class="form-control">
         </div>
         <div class="modal-footer">
        <div class=" unexdivbtn_sec2 " style="margin-top: 10px !important;"><button  data-toggle="modal" data-target="#approvemodal" type="button" class="save_btn  btn <?php if($isexcept){ echo "btn-danger Excepted "; }else{ echo "btn-info UnAccept"; } ?>"><?php if($isexcept){echo "UNAccept"; }else{ echo "Accept";} ?> </button></div>
@@ -185,7 +191,10 @@ $('.save_btn').click(function(){
   }
   else
   {
-	 price=$('#price').val();
+	 $price=$('#price').val();
+	 $bin=$('#bin').val();
+	 $group=$('#group').val();
+	 $prescriptionname=$('#prescriptionname').val();
 
 	  $('.save_btn').removeClass('UnAccept');
 	   $('.save_btn').addClass('Excepted');
@@ -193,7 +202,7 @@ $('.save_btn').click(function(){
 	 $.ajax({
 		url:"/dashboard/ExceptPrescription",
 		method:"post",
-		data:{'PrescriptionId':<?php echo $_GET['id'];?> ,'user_id':<?php echo $user_id ;?>,'price':price},
+		data:{'PrescriptionId':<?php echo $_GET['id'];?> ,'user_id':<?php echo $user_id ;?>,'price':price,'bin':bin,'group':group,'prescriptionname':prescriptionname},
 		success:function(data)
 		{
 			alert(data);
