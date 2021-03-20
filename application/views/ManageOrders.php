@@ -144,11 +144,11 @@ div#menu1 .subtot h3 {
           <p>Enter Price</p>
 		  <input value="0" required type="number" id="price" class="form-control">
 		   <p>Enter Group</p>
-		  <input value="" required type="text" id="group" class="form-control">
+		  <input  required type="text" id="group" class="form-control">
 		   <p>Enter Prescription Name</p>
-		  <input value="" required type="text" id="prescriptionname" class="form-control">
+		  <input  required type="text" id="prescriptionname" class="form-control">
 		   <p>Enter Bin</p>
-		  <input value="" required type="text" id="bin" class="form-control">
+		  <input v required type="text" id="bin" class="form-control">
         </div>
         <div class="modal-footer">
        <div class=" unexdivbtn_sec2 " style="margin-top: 10px !important;"><button  data-toggle="modal" data-target="#approvemodal" type="button" class="save_btn  btn <?php if($isexcept){ echo "btn-danger Excepted "; }else{ echo "btn-info UnAccept"; } ?>"><?php if($isexcept){echo "UNAccept"; }else{ echo "Accept";} ?> </button></div>
