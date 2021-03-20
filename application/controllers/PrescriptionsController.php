@@ -163,7 +163,7 @@ class PrescriptionsController extends CI_Controller
 		
 		if($IsThisTrueOrFlaseRightNow)
 		{
-		    $state=$GetConst[$name];
+		    $state=$name;
 		
 			$this->db->trans_start();
 			$this->db->query("update prescriptions set status='$state' where id=$PrescriptionId");
@@ -175,8 +175,8 @@ class PrescriptionsController extends CI_Controller
 		}
 		else
 		{
-			$index=$name-1;
-			$state=$GetConst[$index];
+			$state=$name-1;
+			//$state=$GetConst[$index];
 		
 			$this->db->trans_start();
 			$this->db->query("update prescriptions set status='$state' where id=$PrescriptionId");
