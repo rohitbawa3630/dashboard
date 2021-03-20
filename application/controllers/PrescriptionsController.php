@@ -170,7 +170,7 @@ class PrescriptionsController extends CI_Controller
 			$this->db->query("update prescription_details set status='$state' where prescription_id=$PrescriptionId");
 			//$this->db->query("update store_relation_with_prescription set after_accepte_status=$state where Prescription_id=$PrescriptionId");
 			$this->db->trans_complete();	
-			Echo "Status Changed Successfully";
+			Echo $state;
 			
 		}
 		else
@@ -179,11 +179,11 @@ class PrescriptionsController extends CI_Controller
 			$state=$GetConst[$index];
 		
 			$this->db->trans_start();
-			$this->db->query("update prescriptions set status=$state where id=$PrescriptionId");
-			$this->db->query("update prescription_details set status=$state where prescription_id=$PrescriptionId");
+			$this->db->query("update prescriptions set status='$state' where id=$PrescriptionId");
+			$this->db->query("update prescription_details set status='$state' where prescription_id=$PrescriptionId");
 			//$this->db->query("update store_relation_with_prescription set after_accepte_status=$state where Prescription_id=$PrescriptionId");
 			$this->db->trans_complete();	
-		   Echo "Status Changed Successfully";
+		   Echo $state;
 		}
 	}
 	
