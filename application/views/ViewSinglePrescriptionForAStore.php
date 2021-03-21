@@ -127,7 +127,7 @@ div#menu1 .subtot h3 {
   <div class="col-3">
    <span class="switch switch-outline switch-icon switch-danger">
     <label>
-     <input type="checkbox"  class="changeStaus"  id="4"  name="4" <?php if($currentStatus==4 ){ ?> checked <?php } if($currentStatus<3){?> disabled <?php} ?>/>
+     <input type="checkbox"  class="changeStaus"  id="4"  name="4" <?php if($currentStatus==4 ){ ?> checked <?php } if($currentStatus<3){?> disabled <?php } ?>/>
      <span></span>
     </label>
    </span>
