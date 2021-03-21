@@ -69,7 +69,12 @@ div#menu1 .subtot h3 {
 	/*  #kt_subheader{ display: none !important;}
    #kt_header{ display: none !important;}
    #kt_aside{ display: none !important;} */
-}</style>
+}
+.warning{
+	border-color: red;
+}
+
+</style>
 <div class="container mainpage">
 
 
@@ -142,13 +147,13 @@ div#menu1 .subtot h3 {
         </div>
         <div class="modal-body">
           <p>Enter Price</p>
-		  <input value="0" required type="number" id="price" class="form-control">
+		  <input value="0" required type="number" id="price" class="form-control validate">
 		   <p>Enter Group</p>
-		  <input  required type="text" id="group" class="form-control">
+		  <input  required type="text" id="group" class="form-control validate">
 		   <p>Enter Prescription Name</p>
-		  <input  required type="text" id="prescriptionname" class="form-control">
+		  <input  required type="text" id="prescriptionname" class="form-control validate">
 		   <p>Enter Bin</p>
-		  <input v required type="text" id="bin" class="form-control">
+		  <input v required type="text" id="bin" class="form-control validate">
         </div>
         <div class="modal-footer">
        <div class=" unexdivbtn_sec2 " style="margin-top: 10px !important;"><button  data-toggle="modal" data-target="#approvemodal" type="button" class="save_btn  btn <?php if($isexcept){ echo "btn-danger Excepted "; }else{ echo "btn-info UnAccept"; } ?>"><?php if($isexcept){echo "UNAccept"; }else{ echo "Accept";} ?> </button></div>
@@ -195,11 +200,14 @@ $('.save_btn').click(function(){
 	 bin=$('#bin').val();
 	 group=$('#group').val();
 	 prescriptionname=$('#prescriptionname').val();
-
+		if(('#bin').length()===0)
+		{
+			alert('empty');
+		}
 	  $('.save_btn').removeClass('UnAccept');
 	   $('.save_btn').addClass('Excepted');
   
-	 $.ajax({
+	/*  $.ajax({
 		url:"/dashboard/ExceptPrescription",
 		method:"post",
 		data:{'PrescriptionId':<?php echo $_GET['id'];?> ,'user_id':<?php echo $user_id ;?>,'price':price,'bin':bin,'group':group,'prescriptionname':prescriptionname},
@@ -211,7 +219,7 @@ $('.save_btn').click(function(){
 			$('.save_btn').addClass('btn-danger');
 			window.location="dashboard/Prescriptions";
 		}
-	}); 
+	});  */
   }
 });
 
