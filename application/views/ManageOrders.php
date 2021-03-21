@@ -70,8 +70,8 @@ div#menu1 .subtot h3 {
    #kt_header{ display: none !important;}
    #kt_aside{ display: none !important;} */
 }
-.warning{
-	border-color: red;
+.validate{
+	color: red;
 }
 
 </style>
@@ -98,7 +98,7 @@ div#menu1 .subtot h3 {
 	    <th>code</th>
         
         <th>Image</th>
-	    <td>Download</td>
+	    <td>Open</td>
 		<th>Price</th>
 		
 		<!--<th>Edit</th>
@@ -110,9 +110,9 @@ div#menu1 .subtot h3 {
    <tr>
 		<td ><?php echo $data['code']; ?></td>
 		<!--<td><?php echo $data['prescription']; ?></td>-->
-		<td><img style="width:30px;height:30px" src="http://15.206.100.247/helloapp/public/images/docs/<?php echo $data['image_file']; ?>" ></td>
-		<td>Download</td>
-		<td><?php echo $data['price']; ?></td>
+		<td ><img  style="width:30px;height:30px" src="http://15.206.100.247/helloapp/public/images/docs/<?php echo $data['image_file']; ?>" ></td>
+		<td data-toggle="modal" data-target="#imgmodel"><span id="sendimgurl" class="http://15.206.100.247/helloapp/public/images/docs/<?php echo $data['image_file']; ?>" style="Cursor:pointer;color:blue">Click here</span></td>
+		<td><button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#myModal">Accept</button></td>
   </tr>      
 	
 	
@@ -127,7 +127,7 @@ div#menu1 .subtot h3 {
 <div class="col-sm-7">
 <!--<div class="save_btn btn_sec2" ><button  data-toggle="modal" data-target="#ordermodal" type="button" class="btn btn-default">MORE DETAILS</button></div>-->
 
-<button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Accept</button>
+
 
 </div>
 </div>
@@ -146,14 +146,15 @@ div#menu1 .subtot h3 {
          
         </div>
         <div class="modal-body">
+			<p class="validate" style="display:none">All fileds required</p>
           <p>Enter Price</p>
-		  <input value="0" required type="number" id="price" class="form-control validate">
+		  <input  required type="number" id="price" class="form-control ">
 		   <p>Enter Group</p>
-		  <input  required type="text" id="group" class="form-control validate">
+		  <input  required type="text" id="group" class="form-control ">
 		   <p>Enter Prescription Name</p>
-		  <input  required type="text" id="prescriptionname" class="form-control validate">
+		  <input  required type="text" id="prescriptionname" class="form-control ">
 		   <p>Enter Bin</p>
-		  <input v required type="text" id="bin" class="form-control validate">
+		  <input v required type="text" id="bin" class="form-control ">
         </div>
         <div class="modal-footer">
        <div class=" unexdivbtn_sec2 " style="margin-top: 10px !important;"><button  data-toggle="modal" data-target="#approvemodal" type="button" class="save_btn  btn <?php if($isexcept){ echo "btn-danger Excepted "; }else{ echo "btn-info UnAccept"; } ?>"><?php if($isexcept){echo "UNAccept"; }else{ echo "Accept";} ?> </button></div>
@@ -164,6 +165,30 @@ div#menu1 .subtot h3 {
       
     </div>
   </div>
+  
+  <!----for image---->
+  <div class="modal fade" id="imgmodel" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+         
+        </div>
+        <div class="modal-body">
+			<img id="getimgurl" src="" style="width:450px;height:400px">
+        </div>
+        <div class="modal-footer">
+      
+	  <!-- <a id="download" href="">Download</a>-->
+	   <button type="button" class="btn btn-success" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+  <!------close------>
   
 </div>
 <!--------------------------------------------------------------------------------------------------------------->
@@ -196,31 +221,48 @@ $('.save_btn').click(function(){
   }
   else
   {
-	 price=$('#price').val();
-	 bin=$('#bin').val();
-	 group=$('#group').val();
-	 prescriptionname=$('#prescriptionname').val();
-		if(('#bin').length()===0)
+		 price=$('#price').val();
+		 bin=$('#bin').val();
+		 group=$('#group').val();
+		 prescriptionname=$('#prescriptionname').val();
+		if(bin.length!=0 && price.length!=0  && group.length!=0 && prescriptionname.length!=0)
 		{
-			alert('empty');
+			  $('.save_btn').removeClass('UnAccept');
+			 $('.save_btn').addClass('Excepted');
+			 $.ajax({
+				url:"/dashboard/ExceptPrescription",
+				method:"post",
+				data:{'PrescriptionId':<?php echo $_GET['id'];?> ,'user_id':<?php echo $user_id ;?>,'price':price,'bin':bin,'group':group,'prescriptionname':prescriptionname},
+				success:function(data)
+				{
+					alert(data);
+					$('.save_btn').html('UnAccept'); 
+					$('.save_btn').removeClass('btn-info');
+					$('.save_btn').addClass('btn-danger');
+					window.location="dashboard/Prescriptions";
+				}
+			});
+			
 		}
-	  $('.save_btn').removeClass('UnAccept');
-	   $('.save_btn').addClass('Excepted');
-  
-	/*  $.ajax({
-		url:"/dashboard/ExceptPrescription",
-		method:"post",
-		data:{'PrescriptionId':<?php echo $_GET['id'];?> ,'user_id':<?php echo $user_id ;?>,'price':price,'bin':bin,'group':group,'prescriptionname':prescriptionname},
-		success:function(data)
+		else
 		{
-			alert(data);
-			$('.save_btn').html('UnAccept'); 
-			$('.save_btn').removeClass('btn-info');
-			$('.save_btn').addClass('btn-danger');
-			window.location="dashboard/Prescriptions";
+			$('.validate').css('display','block');
 		}
-	});  */
+	  
   }
 });
+
+$('#sendimgurl').click(function(){
+	url=$(this).attr('class');
+	$('#getimgurl').attr('src',url);
+	dnurl='/dashboard/downloadPrescription?imagename='+url;
+	$('#download').attr('href',dnurl);
+});
+
+ /* $('#download').click(function(){
+	imagename=$('#getimgurl').attr('src');
+	
+	 
+});  */
 
 </script>

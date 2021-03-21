@@ -104,7 +104,7 @@ class PrescriptionsController extends CI_Controller
 		  $Store_Obj=$this->db->query("SELECT * FROM `stores` WHERE `register_id`= $store_register_id");
 		$store_array=$Store_Obj->result_array();
 		$store_id=$store_array[0]['id'];
-		 $ObjForPrescr=$this->db->query("select prescription_id from prescription_details where store_id = $store_id  && status>=2 order by id DESC");
+		 $ObjForPrescr=$this->db->query("select prescription_id from prescription_details where store_id = $store_id  && status>=2 order by prescription_id DESC");
 		 $ArrayForPrescr=$ObjForPrescr->result_array();
 		
 		 foreach($ArrayForPrescr as $value)
@@ -193,7 +193,9 @@ class PrescriptionsController extends CI_Controller
 	
 	public function downloadPrescription()
 	{
-		$fp = fopen('http://15.206.100.247/helloapp/public/images/docs/1616079694.png', 'w'); 
+		$imagename=$_GET['imagename'];
+		
+		 $fp = fopen($imagename, 'w'); 
 		  
 		// Loop through file pointer and a line 
 		foreach ($list as $fields) { 
@@ -201,10 +203,10 @@ class PrescriptionsController extends CI_Controller
 		} 
 		  
 		fclose($fp);      
-         $url = "http://15.206.100.247/helloapp/public/images/docs/1616079694.png"; 	
+         $url = $imagename; 	
         $file_name = basename($url);  
 		$info = pathinfo($file_name); 
-        if ($info["extension"] == "png") 
+        if ($info["extension"] == "png" || $info["extension"] == "jpg") 
 		{ 
 			
 			header("Content-Description: File Transfer");  
@@ -213,7 +215,7 @@ class PrescriptionsController extends CI_Controller
 			"Content-Disposition: attachment; filename=\""
 			. $file_name . "\"");   
 			readfile ($url); 
-		}  		
+		}  	 
 	}
 	public function testigMethod()
 	{ 
