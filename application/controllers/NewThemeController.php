@@ -455,26 +455,53 @@ class NewThemeController extends CI_Controller
 		
 		public function GetOurStoreSection()
 		{   
-			 if(isset($_SESSION['Current_Business'])){
-					 $bid=$_SESSION['Current_Business'];
-					 $dataobj=$this->db->query("select * from stores where 1");
-                $dataarray=$dataobj->result_array();
-				 }else
-				 {
-					
-					$bid=$_SESSION['status']['business_id'];
-					 $dataobj=$this->db->query("select * from stores where 1");
-                $dataarray=$dataobj->result_array();
-				 }
+			
+			$dataobj=$this->db->query("select * from subcat_store");
+                $dataarray=$dataobj->result_array();    
+			
 				echo json_encode($dataarray);   
 		}
+		
+		
 		public function AddNewThemeStore()
+		{ 
+		
+		if(isset($_POST['submit']))
 		{
-			 $this->load->view('header.php');
+			$storename=$this->input->post('Store_Name');
+			$Email=$this->input->post('Email');
+			$password=$this->input->post('password');
+			$StoreAddress=$this->input->post('Store_Address');
+			$Contact=$this->input->post('Contact');
+			$pub=$this->input->post('pub');
+			$role=4;
+			$Image=$_FILES['Image'];  
+			$Imagename=$_FILES['Image']['name'];
+			$userdata=array('first_name'=>$storename,'email'=>$Email,'password'=>$password,'role'=>$role);
+			 
+			if(move_uploaded_file($Image['tmp_name'],'./images/storelogo/'.$Imagename))  
+			{
+				$this->db->insert('users',$userdata);
+				 $insert_id = $this->db->insert_id();
+				 if($insert_id)
+				 {
+					 
+				$storedata=array('name'=>$storename,'email'=>$Email,'address'=>$StoreAddress,'contact'=>$Contact,'status'=>$pub,'logo'=>$Imagename,'register_id'=>$insert_id);
+				$this->db->insert(' stores',$storedata);
+				
+				
+				 }
+			}			
+		}
+		 else
+		 {
+			 
+			$this->load->view('header.php');
 			$this->load->view('sidebar.php');
 			$this->load->view('AddNewThemeStore.php');
-			$this->load->view('footer.php');;
-			
+			$this->load->view('footer.php');
+		 }
+		 
 		}
 		/************************************AddNewPoductList************************************/
 		public function GetAllNewProductList()

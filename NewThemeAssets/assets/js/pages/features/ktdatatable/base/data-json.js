@@ -1276,7 +1276,7 @@ var KTDatatableJsonRemoteDemo = function() {
             // datasource definition
             data: {
                 type: 'remote',
-                source:"https://stagingapp.pickmyorder.co.uk/GetOurStoreSection",
+                source:"http://15.206.100.247/dashboard/GetOurStoreSection",
                 pageSize: 10,
             },
 
@@ -1314,7 +1314,6 @@ var KTDatatableJsonRemoteDemo = function() {
                 title: 'Store Name',
             },
 			
-			
 			{
                 field: 'address',
 				 width: 200,
@@ -1326,14 +1325,14 @@ var KTDatatableJsonRemoteDemo = function() {
                 title: 'Email',
             },
 			 {
-                field: 'Rating',
+                field: 'rating',
 				 width: 200,
                 title: 'Rating',
             },
 			 {
-                field: 'Contact',
+                field: 'country',
 				 width: 200,
-                title: 'contact',
+                title: 'Country',
             },
 			  {
                 field: 'logo',
@@ -1434,7 +1433,7 @@ var KTDatatableJsonRemoteDemo = function() {
 				   
                     return '\
                        \
-                        <a href="EditStore/'+row.id+'" class="btn btn-sm btn-clean btn-icon mr-2" title="Edit details">\
+                        <a href="dashboard/EditServiceStores/'+row.id+'" class="btn btn-sm btn-clean btn-icon mr-2" title="Edit details">\
                             <span class="svg-icon svg-icon-md">\
                                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">\
                                     <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">\
@@ -2049,6 +2048,274 @@ var KTDatatableJsonRemoteDemo = function() {
 
         $('#kt_datatable_search_status, #kt_datatable_search_type').selectpicker();
     }; 
+	/*****************************************appoinment*****************************************************/
+	
+	 var StoreAppointment = function() {
+		
+        var datatable = $('#kt_datatable').KTDatatable({
+            // datasource definition
+            data: {
+                type: 'remote',
+                source:"http://15.206.100.247/dashboard/GetStoreAppointMent",
+                pageSize: 10,
+            },
+
+            // layout definition
+            layout: {
+                scroll: false, // enable/disable datatable scroll both horizontal and vertical when needed.
+                footer: false // display/hide footer
+            },
+
+            // column sorting
+            sortable: true,            
+
+            pagination: true,
+
+            search: {
+                input: $('#kt_datatable_search_query'),
+                key: 'generalSearch'
+            },
+
+            // columns definition
+            columns: [{
+                field: 'id',
+                title: 'id',
+                sortable: false,
+                width: 20,
+                type: 'number',
+                selector: {
+                    class: ''
+                },
+                textAlign: 'center',
+            },
+			{
+                field: 'created_at',
+				 width: 80,
+                title: 'Date ',
+            },
+			{
+                field: 'total',
+				 width: 150,
+                title: 'Total Amount',
+				template: function(row)
+						{
+							return  "$"+row.total;
+						}
+            },
+			{              
+                field: 'status',
+                title: 'Status',
+                // callback function support for column rendering
+                template: function(row) {
+                    var status = {
+                        1: {
+                            'title': 'In-Progress',
+                            'class': ' label-light-primary'
+                        },
+                        2: {
+                            'title': 'Complete',
+                            'class': ' label-light-success'
+                        },
+                        3: {
+                            'title': 'Canceled',
+                            'class': ' label-light-danger'
+                        },
+                       
+                    };                      
+                    return '<span class="label font-weight-bold label-lg' + status[row.status].class + ' label-inline">' + status[row.status].title + '</span>';
+                },
+			},
+			{
+                field: 'payment_status',
+                title: 'Payment',
+                autoHide: false,
+                // callback function support for column rendering
+                template: function(row) {
+				
+                    var status = {
+                        1: {
+                            'title': 'Paid',
+                            'state': 'success'
+                        },
+                        2: {
+                            'title': 'pending',
+                            'state': 'primary'
+                        },
+                        3: {
+                            'title': 'Failed',
+                            'state': 'danger'
+                        },
+                    };
+                    return '<span class="label label-' + status[row.payment_status].state + ' label-dot mr-2"></span><span class="font-weight-bold text-' + status[row.payment_status].state + '">' +status[row.payment_status].title + '</span>';
+                },
+            },
+			{
+                field: '',
+				 width: 150,
+                title: 'Mark Complete',
+				template: function(row)
+						{
+							if(row.status=="1")
+							{
+								return  "<a class='btn btn-info' href='dashboard/markascomplete/"+row.id+"'>Complete</a>";
+							}
+							else
+							{
+								return  "";
+							}
+						}
+            },
+			/* {	
+                field: 'last_login',
+				 width: 200,
+                title: 'Last Login',
+            }
+			, */ 
+			
+					/* {
+						field: 'givenprojectname',
+						 width: 100,
+						title: 'Project',
+					},
+					{
+						field: 'order_desc',
+						 width: 150,
+						title: 'OrderDescription',
+					}, */
+					/* {
+						field: 'productlistname',
+						 width: 100,
+						title: 'Description',
+					}, */
+					/* {
+						field: 'total_ex_vat',
+						 width: 100,
+						title: 'Total EX VAT',
+						template: function(row)
+						{
+							return  "£"+row.total_ex_vat;
+						}
+					}, */
+					/* {
+						field: 'total_inc_vat',
+						 width: 120,
+						title: 'Total INC VAT',
+						
+						template: function(row)
+						{
+							return  "£"+row.total_inc_vat;
+						}
+					}, */
+					
+					/*  {
+						field: 'status',
+						 width: 60,
+						title: 'Status', 
+						 template: function(row) {
+                    var statusw = {
+                        0: {
+                            'title': 'Order',
+                            'class': ' label-light-success'
+                        },
+                        1: {
+                            'title': 'Panding',
+                            'class': ' label-light-primary'
+                        },
+                       
+                    };                     
+                    return  statusw[row.status].title; 
+                },
+					} ,
+            /*  {              
+                field: 'app_status',
+                title: 'Last Login',
+                // callback function support for column rendering
+                template: function(row) {
+                    var status = {
+                        0: {
+                            'title': 'De-Activate',
+                            'class': ' label-light-success'
+                        },
+                        1: {
+                            'title': 'Activate',
+                            'class': ' label-light-primary'
+                        },
+                        3: {
+                            'title': 'Canceled',
+                            'class': ' label-light-primary'
+                        },
+                        4: {
+                            'title': 'Success',
+                            'class': ' label-light-success'
+                        },
+                        5: {
+                            'title': 'Info',
+                            'class': ' label-light-info'
+                        },            
+                        6: {
+                            'title': 'Danger',
+                            'class': ' label-light-danger'                    
+                        },
+                        7: {
+                            'title': 'Warning',
+                            'class': ' label-light-warning'
+                        },
+                    };                      
+                    return '<span class="label font-weight-bold label-lg' + status[row.app_status].class + ' label-inline">' + status[row.app_status].title + '</span>';
+                },
+            }, */ /*  {
+                field: 'iswholeapp',
+                title: 'Login as this User',
+                autoHide: false,
+                // callback function support for column rendering
+                template: function(row) {
+				
+                    var status = {
+                        0: {
+                            'title': 'Contractor App',
+                            'state': 'danger'
+                        },
+                        1: {
+                            'title': 'Wholsaler App',
+                            'state': 'primary'
+                        },
+                        2: {
+                            'title': 'Invoice Management',
+                            'state': 'success'
+                        },
+                    };
+                    return '<span class="label label-' + status[row.iswholeapp].state + ' label-dot mr-2"></span><span class="font-weight-bold text-' + status[row.iswholeapp].state + '">' +
+                        status[row.iswholeapp].title + '</span>';
+                },
+            }, */  {
+                 field: 'Actions',
+                title: 'Actions',
+                sortable: false,
+                width: 100, 
+                autoHide: false,
+                overflow: 'visible',
+                template: function(row) {
+					var host = window.location.host; 
+				   
+                    
+                         return '\
+                       \
+                        <a href="dashboard/ViewAppointment/'+row.id+'" class="btn btn-sm btn-clean btn-icon mr-2" title="View">\
+                           <i class="fa fa-eye" aria-hidden="true"></i>\
+                        </a>\
+                      ';
+                },            
+            }],
+
+        });
+    $('#kt_datatable_search_status_app').on('change', function() {
+				
+            datatable.search($(this).val().toLowerCase(), 'status');
+		
+        });
+        $('#kt_datatable_search_status, #kt_datatable_search_type').selectpicker();
+    }; 
+	/*********************************************************************************************/
 		/*******************************Quotes******************************************************/
 
 	
@@ -3568,6 +3835,11 @@ var KTDatatableJsonRemoteDemo = function() {
 				{
 					
 					Myprescription();
+				}
+				if(myarr[index-1]=="StoreAppointment")
+				{
+					//alert("haa thk bhi");
+					StoreAppointment();
 				}
         }
     };

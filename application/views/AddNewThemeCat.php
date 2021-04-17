@@ -28,7 +28,9 @@
       <label for="email">Parent Category</label>
 	  </div>
 	  <?php
-	    
+	   /*  if(isset($_SESSION['status']) && $_SESSION['status']['role']=='4')
+		{
+			$userid=$_SESSION['status']['user_id']; */
 		  $AllCat= $this->ProductCategoryModal->GetAllCat($bid);?>
 	  
 	  
@@ -49,15 +51,7 @@
 			if(isset($singlecat['sub_cat_name'])){  ?>
 	  <option value=<?php echo $singlecat['id'].',Subcat'; ?>><?php echo $singlecat['sub_cat_name'];?></option>
 	   <?php } } }?>
-	   <option disabled > ---------------Sub Sub Category-------------</option>
-	   <?php for($i=0;$i<count($sucat_id_array);$i++){
-		 $AllSuperSubCat= $this->ProductCategoryModal->GetAllSuperSubCat($sucat_id_array[$i]);
-		 
-		  foreach($AllSuperSubCat as $singleSupercat){
-
-		if(isset($singleSupercat['name'])){	  ?>
-	  <option disabled value=<?php echo $singleSupercat['id'].',super_sub_cat'; ?>><?php echo $singleSupercat['name'];?></option>
-	   <?php }}  } ?>
+	  
 	 
 	  </select>
 	  <label class="mt-3" style="color:red">Please Select Root If You Want To Add A New Product Category.</label>

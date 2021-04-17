@@ -17,7 +17,7 @@ var KTDatatableHtmlTableDemo = function() {
 			},
 			columns: [
 				{
-					field: 'DepositPaid',
+					field: 'id',
 					type: 'number',
 				},
 				{
@@ -25,8 +25,8 @@ var KTDatatableHtmlTableDemo = function() {
 					type: 'date',
 					format: 'YYYY-MM-DD',
 				}, {
-					field: 'Status',
-					title: 'Status',
+					field: 'status',
+					title: 'Payment Status',
 					autoHide: false,
 					// callback function support for column rendering
 					template: function(row) {

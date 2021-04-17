@@ -1,10 +1,11 @@
-<div><div><div class="container">
+<div class="container">
+								<!--end::Notice-->
 								<!--begin::Card-->
 								<div class="card card-custom">
 									<div class="card-header flex-wrap border-0 pt-6 pb-0">
+										<h5 class="text-dark font-weight-bold my-1 mr-5">Products</h5>
 										<div class="card-title">
-											<h3 class="card-label">
-											Products</h3> 
+											
 										</div>
 										<div class="card-toolbar">
 											<!--begin::Dropdown-->
@@ -26,25 +27,24 @@
 													<!--begin::Navigation-->
 													<ul class="navi flex-column navi-hover py-2">
 														<li class="navi-header font-weight-bolder text-uppercase font-size-sm text-primary pb-2">Choose an option:</li>
-														<li class="navi-item" >
-															<a href="<?php echo base_url('PrintHtmlTable'); ?>" class="navi-link printthis">    
+														<li class="navi-item">
+															<a href="<?php  echo base_url('printAdminUserTable'); ?>" class="navi-link">
 																<span class="navi-icon">
 																	<i class="la la-print"></i>
 																</span>
-																<span class="navi-text ">Print</span>
+																<span class="navi-text">Print</span>
 															</a>
 														</li>
-														<li class="navi-item csvprint">
-															<a href="<?php echo base_url('makeCsvFile');?>" class="navi-link">
-																<span class="navi-icon">
+													
+														<li class="navi-item">
+                                                        <a href="<?php  echo base_url('csvUserAdmin'); ?>" class="navi-link">																<span class="navi-icon">
 																	<i class="la la-file-text-o"></i>
 																</span>
 																<span class="navi-text">CSV</span>
 															</a>
 														</li>
 														<li class="navi-item">
-															<a href="<?php echo base_url('GenratePdfForBusiness');?>" class="navi-link">
-																<span class="navi-icon">
+                                                         <a href="<?php  echo base_url('PrintPdfTableForUser'); ?>" class="navi-link">																<span class="navi-icon">
 																	<i class="la la-file-pdf-o"></i>
 																</span>
 																<span class="navi-text">PDF</span>
@@ -57,7 +57,7 @@
 											</div>
 											<!--end::Dropdown-->
 											<!--begin::Button-->
-											<a href="<?php echo site_url('AddNeThemeProduct'); ?>" class="btn btn-primary font-weight-bolder">
+											<a href="<?php echo site_url("AddNeThemeProduct");?>" class="btn btn-primary font-weight-bolder">
 											<span class="svg-icon svg-icon-md">
 												<!--begin::Svg Icon | path:assets/media/svg/icons/Design/Flatten.svg-->
 												<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
@@ -68,7 +68,7 @@
 													</g>
 												</svg>
 												<!--end::Svg Icon-->
-											</span>New Product</a>
+											</span>New Products</a>
 											<!--end::Button-->
 										</div>
 									</div>
@@ -88,46 +88,9 @@
 															</div>
 														</div>
 														<div class="col-md-4 my-2 my-md-0">
-															<div class="d-flex align-items-center">
-																<label class="mr-3 mb-0 d-none d-md-block">Manufacture</label>
-																<select class="form-control" id="kt_datatable_search_status">
-																	<option value="">All</option>
-																	<?php 
-  
-																	  if(isset($_SESSION['Current_Business'])){ 
-																	  $bu_id=$_SESSION['Current_Business'];
-																	  }
-																	  else
-																	  {
-																		  $bu_id=$_SESSION['status']['business_id'];
-																	  }
-																	  $AllCat=$this->ProductCategoryModal->GetAllCat($bu_id);
-																	  $manufatureobj=$this->db->query("select Manufacture from dev_products where business_id='$bu_id'");
-																	  $manufaturearray=$manufatureobj->result_array();?>
-																	
-																	  <?php
-																	  foreach($manufaturearray as $ma){     if($ma['Manufacture']!=''){
-																	?>
-																	
-																		<option value="<?php echo $ma['Manufacture'];?>"><?php echo $ma['Manufacture'];?></option>
-																	           
-																	  <? } } ?>
-																</select>
-															</div>
+														
 														</div>
-														<div class="col-md-4 my-2 my-md-0">
-															<div class="d-flex align-items-center">
-																<label class="mr-3 mb-0 d-none d-md-block">Category:</label>
-																<select class="form-control" id="kt_datatable_search_type">
-																	<option value="">All</option>
-																	<?php foreach( $AllCat as $singe)
-																	{ ?>
-																		<option value="<?php echo $singe['cat_name'];?>"><?php echo $singe['cat_name'];?></option>
-																	<?php } ?>
-																	
-																</select>
-															</div>
-														</div>
+														
 													</div>
 												</div>
 												<!--<div class="col-lg-3 col-xl-4 mt-5 mt-lg-0">
@@ -138,10 +101,9 @@
 										<!--end::Search Form-->
 										<!--end: Search Form-->
 										<!--begin: Datatable-->
-										
+										<div class="datatable datatable-bordered datatable-head-custom" id="kt_datatable"></div>
 										<!--end: Datatable-->
 									</div>
-									
 								</div>
 								<!--end::Card-->
 							</div>
@@ -149,21 +111,6 @@
 						</div>
 						<!--end::Entry-->
 					</div>
-					
 					<!--end::Content-->
-				<div class="form_part" style="margin-top: 24px;">
-<div class="container">
-								<div class="card card-custom">
-									
-									<div class="card-body">
-										
-										<div class="mb-7">
-											<div class="datatable datatable-bordered datatable-head-custom printable" id="kt_datatable"></div>
-										</div>
-									
-									</div>
-								</div>
-				</div>
-							</div>
-
-							
+					<!--begin::Footer-->
+					</div>

@@ -10,16 +10,7 @@ else
 	$type="Engineers";
 	$business_id=$_SESSION['status']['business_id'];
 }
-if($business_id)
-{
-$bussindata=$this->db->query("select business_name from dev_business where id=$business_id");
-$bussinessname=$bussindata->result_array();
-$thenaame=$bussinessname[0]['business_name'];
-}
-else
-{    
-	$thenaame="Pickmyorder";    
-}
+
 ?>
 
 <!DOCTYPE html>
@@ -197,8 +188,7 @@ h3.font-size-lg.text-dark.font-weight-bold.mb-6 {
 					     <div class="container-fluid d-flex align-items-center" id="kt_header_menu_wrapper">
 						<?php if(isset($_SESSION['status'])){ if($_SESSION['status']['role']=='1') {?>
 							<div id="kt_header_menu" class="mr-5">
-							<?php $Get_Data_object = $this->db->query("select * from dev_business where iswholeapp='0'"); 
-							  $Get_Data = $Get_Data_object->result_array(); ?>
+							
 							   
 							<Select class="select_business form-control form-control-solid" ><option value="0">Contractors Apps</option><?php foreach($Get_Data as $Data) { ?>
 							
@@ -209,9 +199,7 @@ h3.font-size-lg.text-dark.font-weight-bold.mb-6 {
 								</ul>
 							</div>
 							<div id="kt_header_menu2" >
-							<?php $Get_Data_object = $this->db->query("select * from dev_business where iswholeapp='1'"); 
-							   $Get_Data=$Get_Data_object->result_array();
-							?>
+							
 							
 							<Select class="select_business repeatselect form-control form-control-solid" ><option value="0">Wholesaler Apps</option><?php foreach($Get_Data as $Data) { ?>
 							

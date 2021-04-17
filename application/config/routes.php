@@ -381,6 +381,18 @@ $route['ExceptedPrescriptions']="PrescriptionsController/ExceptedPrescriptions";
 $route['ViewSinglePrescriptionForAStore/:num']="PrescriptionsController/ViewSinglePrescriptionForAStore";
 $route['ChangeStatusByStore']="PrescriptionsController/ChangeStatusByStore";
 $route['downloadPrescription']="PrescriptionsController/downloadPrescription";
+$route['Services']="SevicesController/Services";
+$route['addService']="SevicesController/addService";
+//HPstores
+$route['StoreAvibility']="AtradeyaAppController/StoreAvibility";
+$route['EditServiceStores/:num']="AtradeyaAppController/EditServiceStores";
+$route['UpdateStores']="AtradeyaAppController/UpdateStores";
+$route['storeProfile']="AtradeyaAppController/storeProfile";
+$route['StoreAppointment']="AtradeyaAppController/StoreAppointment";
+$route['ViewAppointment/:num']="AtradeyaAppController/ViewAppointment";
+$route['GetStoreAppointMent']="AtradeyaAppController/GetStoreAppointMent";
+$route['markascomplete/:num']="AtradeyaAppController/markascomplete";
+$route['sample']="AtradeyaAppController/sample";
 $route['404_override'] = '';     
 $route['translate_uri_dashes'] = FALSE;
 

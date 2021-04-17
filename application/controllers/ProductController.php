@@ -38,172 +38,48 @@ else
   } 
 }
 	public function Products(){
-		if(isset($_SESSION['status'])){
-			$tab_data= array();
-			$FillterArrayEmpty=array();
-			if(isset($_POST['AddGernelDetails']))
-			{// print_r($_POST);die;         
-				$bussiness_id=$_SESSION['status']['business_id'];
-				if(isset($_SESSION['Current_Business']))
-			{
-					$bussiness_id=$_SESSION['Current_Business'];
-					
-			}
-			if($this->input->post('Sub_Sub_Category'))
-			{
-				$SUPER_SUB_CAT_ID=$this->input->post('Sub_Sub_Category');
-				$getsupersubcatname=$this->db->query("select name from super_sub_cat where id='$SUPER_SUB_CAT_ID'");
-				$getsupersubcatname=$getsupersubcatname->result_array();
-				$supersubcatnameis=$getsupersubcatname[0]['name'];
-			}
-			else
-			{
-				$SUPER_SUB_CAT_ID=0;
-				$supersubcatnameis='';
-			}
-			if($this->input->post('Sub_Category'))
-			{
-				$SUB_CAT_ID=$this->input->post('Sub_Category');
-				$getsubcatname=$this->db->query("select sub_cat_name from dev_product_sub_cat where id='$SUB_CAT_ID'");
-				$getsubcatname=$getsubcatname->result_array();
-				$subcatnameis=$getsubcatname[0]['sub_cat_name'];
-			}
-			else
-			{
-				$SUB_CAT_ID=0;
-				$subcatnameis='';
-			}
-			if($this->input->post('Category'))
-			{
-				$CAT_ID=$this->input->post('Category');
-				$getcatname=$this->db->query("select cat_name from dev_product_cat where id='$CAT_ID'");
-				$getcatname=$getcatname->result_array();
-				$catnameis=$getcatname[0]['cat_name'];
-			}
-			else
-			{
-				$CAT_ID=0;
-				$catnameis='';
-				
-			}
+		if(isset($_SESSION['status']))
+		{
+		
 			
-			$exvat=0;
-			$exvat=$this->input->post('Price_ex_VAT');
-			$exvat=number_format((float)$exvat, 2, '.', '');
-			$date=date('d-m-y h:i:s');
-			if($this->input->post('Manufacture'))   //if manufacture details 
+			if(isset($_POST['AddGernelDetails']))
 			{
-				$Manufacture=$this->input->post('Manufacture');
-			}
-			else
-			{
-				$Manufacture='';
-			}
-			if($this->input->post('listid'))   //if list details 
-			{
-				$list=$this->input->post('listid');
-				$list=json_encode(array($list));
-			}
-			else
-			{
-				$list='';
-			}
-			if($this->input->post('filteritem') && $this->input->post('filteritemvalue'))
-			{
-				
-				$filteritemArray=$this->input->post('filteritem');
-				$filteritemvalueArray=$this->input->post('filteritemvalue');
-				for($i=0;$i<count($filteritemArray);$i++)
+
+				$productname=$this->input->post('productname');
+			
+				$Description=$this->input->post('Description');
+				$Price=$this->input->post('Price');
+				$size=$this->input->post('size');
+				$size=implode(',',$size);
+				$stock=$this->input->post('stock');
+				$pub=$this->input->post('pub');
+				$Category=$this->input->post('Category');
+				$Sub_Category=$this->input->post('Sub_Category');
+				$Image=$_FILES['Image'];
+				$ImageName=$_FILES['Image']['name'];
+				$data=array('name'=>$productname,'description'=>$Description,'price'=>$Price,'size'=>$size,'units'=>$stock,'state'=>$pub,'category_id'=>$Category,'subcat_id'=>$Sub_Category,'image'=>$ImageName);
+				if(move_uploaded_file($Image['tmp_name'],'./images/products/'.$ImageName))
 				{
-					array_push($FillterArrayEmpty,array($filteritemArray[$i]=>$filteritemvalueArray[$i]));
-				}
-				
-			}
-			$productdetails=array('Manufacture'=>$Manufacture,'list_id'=>$list,'business_id'=>$bussiness_id,
-			'title'=>$this->input->post('title'),'product_name'=>$this->input->post('name'),
-			'vat_deductable'=>$this->input->post('deduct'),'SKU'=>$this->input->post('SKU'),
-			'description'=>$this->input->post('Description'),'inc_vat'=>$this->input->post('Price_INC_VAT'),
-			'ex_vat'=>$exvat,'tax_class'=>$this->input->post('tax'),'publish_status'=>$this->input->post('pub'),
-			'categories'=>$CAT_ID,'sub_categories'=>$SUB_CAT_ID,'super_sub_cat_id'=>$SUPER_SUB_CAT_ID,
-			'searchsupercat'=>$supersubcatnameis,'searchsubcat'=>$subcatnameis,'searchcat'=>$catnameis,'AddedFilters'=>serialize($FillterArrayEmpty),'dateandtime'=>$date);
-				
-              $table='dev_products';				
-			    $insert=$this->ProductModel->insert($table,$productdetails);
-				$_SESSION['last_insert_id']= $this->db->insert_id();
-				$Last_Insert_Id= $_SESSION['last_insert_id'];
-				if($insert)
-				{
-				   $this->session->set_flashdata('successdetails', "Product Details Add Successfully");
-					$tab_data['tab']=array('main'=>'add_pd','sub'=>'pd');
-					/*************curl to add product in atrdeya*****************/
-					if($_SESSION['status']['iswholseller'])
-					{
-						
-						$title=$this->input->post('title');
-						$des=$this->input->post('Description');
-						$name=$this->input->post('name');
-						$sku=$this->input->post('SKU');
-					     $MainUserId=$_SESSION['status']['user_id'];
-						  $curl = curl_init();
-						  curl_setopt_array($curl, array(
-						  CURLOPT_URL => "http://atradeya.co.uk/test.php",
-						  CURLOPT_RETURNTRANSFER => true,
-						  CURLOPT_ENCODING => "",
-						  CURLOPT_MAXREDIRS => 10,
-						  CURLOPT_TIMEOUT => 30,
-						  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-						  CURLOPT_CUSTOMREQUEST => "POST",
-						  CURLOPT_POSTFIELDS => "user=$MainUserId&description=$des&title=$title&mainid=$Last_Insert_Id&searchcat=$catnameis&spc=$name&Sale_price=$exvat&Sku=$sku",
-						  CURLOPT_HTTPHEADER => array(
-							"cache-control: no-cache",
-							"content-type: application/x-www-form-urlencoded",
-							"postman-token: 83cca713-3217-b44a-e59b-d46a925c3e5f"
-						  ),
-						));
-
-						$response = curl_exec($curl);
-						
-						$err = curl_error($curl);
-
-						curl_close($curl);  
-
-						
-					}
-				
-					/********************close***********************************/
-					redirect('Edit_single_product?id='.$Last_Insert_Id);
+					$this->db->insert('products',$data);
+					
 				}
 				else
 				{
-					$this->session->set_flashdata('faileddetails', "opration failed");
+					echo "opration failed";
 				}
             }
-		   
-			
-			   
-			else if(isset($_POST['hidsuppli']))
+			else
 			{
-				
+					    $this->load->view('header.php');
+						$this->load->view('sidebar.php');
+						$this->load->view('products.php');
+						$this->load->view('footer.php'); 
 			}
-			else if(isset($_POST['spc0']))
-			{
-				
-				 
-			}
-			else if(isset($_POST['gobackproduct']))
-			{
-				 
-
-			}
-		    $this->load->view('header.php');
-			$this->load->view('sidebar.php');
-			$this->load->view('products.php',$tab_data);
-			$this->load->view('footer.php'); 
 		}
-	else
-	{	
-		   redirect('dashboard');
-	}
+		else
+		{	
+			   redirect('dashboard');
+		}
 } 
    public function CheckProductExsist()
    {
@@ -250,7 +126,7 @@ public function AddProductVariation(){
 	{
 		if(isset($_SESSION['last_insert_id']))
 		{
-		$pid=$_SESSION['last_insert_id'];
+			$pid=$_SESSION['last_insert_id'];
 		}
 		else
 		{

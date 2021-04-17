@@ -107,7 +107,7 @@ License: You must have a valid license purchased only from https://themes.getboo
 					<div class="kt-login-v1__head">
 						<div class="kt-login-v1__logo">
 							<a href="#">
-	<img src="<?php echo base_url(); ?>/images/used.png" />
+	<!--<img src="<?php echo base_url(); ?>/images/used.png" />-->
 							</a>
 						</div>
 						<!--<div class="kt-login-v1__signup">
@@ -162,7 +162,7 @@ License: You must have a valid license purchased only from https://themes.getboo
 										<a style="color:black" href="#" class="kt-login-v1__forgot">
 											Forgot Password ?
 										</a>
-										<input style="background-color:#1c4d9c" type="submit" class="btn " name="login" value="Login In">
+										<input style="background-color:#cc0001" type="submit" class="btn " name="login" value="Login In">
 									</div>
 								</form>
 
@@ -215,9 +215,9 @@ License: You must have a valid license purchased only from https://themes.getboo
 							<!--<a href="#">Support</a>
 							<a href="#">Contact</a>-->
 						</div>
-						<div class="kt-login-v1__copyright">
+						<!--<div class="kt-login-v1__copyright">
 							<a href="<?php echo base_url()."/index";?>">&copy; Pick my order</a>
-						</div>
+						</div>-->
 					</div>
 				</div>
 

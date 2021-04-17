@@ -83,8 +83,18 @@ class Welcome extends CI_Controller {
 				$role=$userdata['role'];
 				//$iswholseller=$userdata['permission_wholeseller'];
 			 }
+			 if($role=='5')
+			 {
+				 $queStore=$this->db->query("select * from subcat_store where userid= $user_id");
+				$resultStore = $queStore->result_array();
+				$storeid=$resultStore[0]['id'];
+			 }
+			 else
+			 {
+				 $storeid=0;
+			 }
 			 
-			$session_array=array('user_id'=>$user_id,'name'=>$user_name,'email'=>$email,'role'=>$role);
+			$session_array=array('user_id'=>$user_id,'name'=>$user_name,'email'=>$email,'role'=>$role,'storeid'=>$storeid);
 			
 			
 				$_SESSION['status']= $session_array;

@@ -15,24 +15,24 @@ class ProductCategoryModal extends CI_Model
 		return($AllCat);
 		}
 		else{
-		$AllCat=$this->db->query('select * from dev_product_cat ');
+		/* $AllCat=$this->db->query('select * from dev_product_cat ');
 		$AllCat=$AllCat->result_array();
-		return($AllCat);
+		return($AllCat); */
 		}
 	}
 	function GetAllSubCat($catid)
 	{
-		if($catid==0){
-		$AllCat=$this->db->query('select * from dev_product_sub_cat');
+		/* if($catid==0){
+		$AllCat=$this->db->query('select * from  service_subcategory');
 		$AllCat=$AllCat->result_array();
 		return($AllCat);
 		}
 		else
-		{
-		$AllCat=$this->db->query("select * from dev_product_sub_cat where cat_id='$catid'");
+		{ */
+		$AllCat=$this->db->query("select * from service_subcategory where category_id='$catid'");
 		$AllCat=$AllCat->result_array();
 		return($AllCat);	
-		}
+		/* } */
 	}
   function GetAllSuperSubCat($subcatid)
 	{

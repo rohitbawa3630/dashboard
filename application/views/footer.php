@@ -1550,6 +1550,7 @@
 		<!--begin::Page Scripts(used by this page)-->
 		<script src="<?php echo base_url(); ?>NewThemeAssets/assets/js/pages/features/cards/draggable.js"></script>
 		<script src="<?php echo base_url(); ?>NewThemeAssets/assets/js/pages/features/ktdatatable/base/data-json.js"></script>
+		<script src="<?php echo base_url(); ?>NewThemeAssets/assets/js/pages/features/ktdatatable/base/html-table.js"></script>
 		        
     <script src="<?php echo base_url(); ?>NewThemeAssets/dropzone/dist/dropzone.js"></script>
 	<script src="<?php echo base_url(); ?>NewThemeAssets/CustomDrag.js"></script>   
